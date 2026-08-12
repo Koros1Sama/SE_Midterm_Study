@@ -1,0 +1,2104 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      هندسة البرمجيات — مراجعة النصفي الكاملة (L1-L6) | د. عبدالماجد الخليدي
+    </title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --card2: #273449;
+        --txt: #e2e8f0;
+        --mut: #94a3b8;
+        --acc: #38bdf8;
+        --acc2: #22d3ee;
+        --green: #34d399;
+        --red: #f87171;
+        --yellow: #fbbf24;
+        --purple: #a78bfa;
+        --orange: #fb923c;
+        --hot: #f43f5e;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: var(--bg);
+        color: var(--txt);
+        line-height: 1.8;
+        font-size: 16px;
+      }
+      header {
+        background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+        padding: 18px 14px;
+        text-align: center;
+        position: relative;
+        z-index: 50;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+      header h1 {
+        font-size: 1.2rem;
+        color: #fff;
+      }
+      header .sub {
+        color: #bae6fd;
+        font-size: 0.85rem;
+        margin-top: 4px;
+      }
+      header .author-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 3px 12px;
+        border-radius: 20px;
+        font-size: 0.82rem;
+        margin-top: 6px;
+        margin-left: 6px;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      header .score-badge {
+        display: inline-block;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.78rem;
+        margin-top: 6px;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        background: #0b1220;
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        z-index: 40;
+      }
+      nav button {
+        background: var(--card);
+        color: var(--mut);
+        border: none;
+        padding: 9px 13px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+      nav button:hover {
+        background: var(--card2);
+        color: var(--txt);
+      }
+      nav button.active {
+        background: var(--acc);
+        color: #001018;
+      }
+      .tab {
+        display: none;
+        padding: 14px;
+        max-width: 880px;
+        margin: 0 auto;
+        padding-bottom: 80px;
+      }
+      .tab.active {
+        display: block;
+        animation: fade 0.3s;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      h2.sec {
+        color: var(--acc);
+        border-right: 4px solid var(--acc);
+        padding-right: 10px;
+        margin: 26px 0 10px;
+        font-size: 1.15rem;
+      }
+      .part {
+        color: var(--orange);
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin: 30px 0 8px;
+        text-align: center;
+        border-top: 1px solid #334155;
+        padding-top: 20px;
+      }
+      .lect {
+        background: var(--card);
+        border-radius: 14px;
+        padding: 18px;
+        margin: 14px 0;
+        border: 1px solid #334155;
+      }
+      .lect h3 {
+        color: var(--acc2);
+        margin: 0 0 8px;
+        font-size: 1.02rem;
+      }
+      .slide {
+        background: var(--card2);
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin: 8px 0;
+        border-right: 3px solid #475569;
+      }
+      .slide .t {
+        color: var(--yellow);
+        font-weight: 700;
+        font-size: 0.92rem;
+        display: block;
+        margin-bottom: 3px;
+      }
+      .lect .term {
+        color: var(--green);
+        font-weight: 700;
+      }
+      .fire {
+        background: var(--hot);
+        color: #fff;
+        border-radius: 4px;
+        padding: 0 5px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        margin-right: 4px;
+      }
+      .en {
+        color: var(--purple);
+        font-size: 0.85em;
+        direction: ltr;
+        display: inline-block;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 0.82rem;
+        background: var(--card);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      th {
+        background: #1d4ed8;
+        color: #fff;
+        padding: 9px;
+        text-align: right;
+      }
+      td {
+        padding: 8px;
+        border-top: 1px solid #334155;
+        vertical-align: top;
+      }
+      tr:hover td {
+        background: var(--card2);
+      }
+      .fc-wrap {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .fc {
+        background: var(--card);
+        min-height: 170px;
+        border-radius: 14px;
+        padding: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border: 2px solid #334155;
+        transition: 0.2s;
+        position: relative;
+      }
+      .fc:hover {
+        border-color: var(--acc);
+        transform: translateY(-2px);
+      }
+      .fc .face {
+        display: none;
+        font-size: 0.9rem;
+      }
+      .fc .face.q {
+        display: block;
+        color: var(--acc2);
+        font-weight: 700;
+      }
+      .fc.flipped .face.q {
+        display: none;
+      }
+      .fc.flipped .face.a {
+        display: block;
+        color: var(--txt);
+      }
+      .fc .hint {
+        position: absolute;
+        bottom: 6px;
+        left: 8px;
+        font-size: 0.65rem;
+        color: var(--mut);
+      }
+      .fc-controls {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin: 14px 0;
+        flex-wrap: wrap;
+      }
+      .fc-controls button {
+        background: #334155;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .fc-count {
+        text-align: center;
+        color: var(--mut);
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+      }
+      .qa {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 12px;
+        margin: 10px 0;
+        border-right: 4px solid var(--purple);
+      }
+      .qa .q {
+        font-weight: 700;
+        color: var(--yellow);
+        cursor: pointer;
+      }
+      .qa .q:before {
+        content: "سؤال ▸ ";
+        color: var(--purple);
+      }
+      .qa .a {
+        display: none;
+        margin-top: 10px;
+        color: var(--txt);
+        background: var(--card2);
+        padding: 10px;
+        border-radius: 8px;
+        border-right: 3px solid var(--green);
+      }
+      .qa.open .a {
+        display: block;
+        animation: fade 0.3s;
+      }
+      .qa .a:before {
+        content: "✓ الإجابة: ";
+        color: var(--green);
+        font-weight: 700;
+      }
+      #quiz-q {
+        background: var(--card);
+        border-radius: 14px;
+        padding: 18px;
+        margin: 12px 0;
+      }
+      #quiz-q .qq {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--acc2);
+        margin-bottom: 14px;
+      }
+      .opt {
+        display: block;
+        background: var(--card2);
+        margin: 8px 0;
+        padding: 12px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: 0.15s;
+      }
+      .opt:hover {
+        border-color: var(--acc);
+      }
+      .opt.correct {
+        background: rgba(52, 211, 153, 0.2);
+        border-color: var(--green);
+      }
+      .opt.wrong {
+        background: rgba(248, 113, 113, 0.2);
+        border-color: var(--red);
+      }
+      .big-score {
+        font-size: 3rem;
+        font-weight: 900;
+      }
+      .progress {
+        height: 6px;
+        background: #334155;
+        border-radius: 3px;
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .progress > div {
+        height: 100%;
+        background: linear-gradient(90deg, var(--acc), var(--green));
+        transition: 0.3s;
+      }
+      .note {
+        background: rgba(251, 191, 36, 0.1);
+        border: 1px solid var(--yellow);
+        border-radius: 10px;
+        padding: 10px;
+        margin: 12px 0;
+        color: #fde68a;
+        font-size: 0.88rem;
+      }
+      .pred {
+        background: rgba(244, 63, 94, 0.08);
+        border: 1px solid var(--hot);
+        border-radius: 10px;
+        padding: 12px;
+        margin: 12px 0;
+      }
+      .tip {
+        color: var(--mut);
+        font-size: 0.82rem;
+        font-style: italic;
+      }
+      @media (max-width: 520px) {
+        header h1 {
+          font-size: 1.02rem;
+        }
+        nav {
+          padding: 8px 6px;
+          gap: 4px;
+        }
+        nav button {
+          padding: 7px 10px;
+          font-size: 0.78rem;
+        }
+        .tab {
+          padding: 14px 10px 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🧠 هندسة البرمجيات — المراجعة الكاملة للنصفي (L1–L6)</h1>
+      <div class="sub">
+        د. عبدالماجد الخليدي • نص السلايدات كاملًا (مو ملخّص)
+      </div>
+      <div class="author-badge">🎓 عمل الطالب: عبدالرحمن المخلافي</div>
+      <div class="score-badge">الهدف: 27/30 💪</div>
+    </header>
+    <nav>
+      <button class="active" onclick="show('summary', this)">⚡ الملخّص السريع</button>
+      <button onclick="show('notes', this)">📚 السلايدات الكاملة</button>
+      <button onclick="show('predict', this)">🔥 توقعات</button>
+      <button onclick="show('compare', this)">⚖️ جداول</button>
+      <button onclick="show('cards', this)">🃏 بطاقات</button>
+      <button onclick="show('qa', this)">❓ أسئلة</button>
+      <button onclick="show('quiz', this)">🎯 اختبر</button>
+    </nav>
+
+        <!-- SUMMARY TAB (الملخص السريع) -->
+    <div class="tab active" id="summary">
+      <div class="note" style="background: rgba(56, 189, 248, 0.1); border-color: var(--acc); color: #bae6fd;">
+        ⚡ <b>هذا هو الملخّص السريع والمركز (الموجز):</b> يغطي النقاط الرئيسية والجرعات المركزة للمراجعة السريعة.
+      </div>
+
+
+      <div class="progress"><div id="p-notes"></div></div>
+
+      <h2 class="sec">المحاضرة 1 — مقدمة في هندسة البرمجيات</h2>
+      <div class="lect">
+        <ul>
+          <li>
+            <b>تعريف هندسة البرمجيات (Software Engineering):</b>
+            <span class="term"
+              >الفرع الهندسي الذي يتعامل مع جميع جوانب إنتاج البرمجيات</span
+            >، مهنة تطوّر وتصمّم برمجيات عالية الجودة مع مراعاة متطلبات
+            المستخدم.
+          </li>
+          <li>
+            <b>تعريف البرنامج (Software):</b> مجموعة تعليمات مترابطة لحل مشكلة
+            معينة.
+          </li>
+          <li>
+            <b>تكاليف هندسة البرمجيات:</b>
+            <span class="term">~60% تطوير + ~40% اختبار</span>.
+          </li>
+          <li>
+            <b>سمات البرمجيات الجيدة (Attributes):</b>
+            <span class="term">قابلية الصيانة (Maintainability)</span> ·
+            <span class="term">الاعتمادية (Dependability)</span> ·
+            <span class="term">الكفاءة (Efficiency)</span> · قابلية الاستخدام
+            (Usability).
+          </li>
+          <li><b>تطوير البرمجيات:</b> عملية إنشاء برنامج بلغة برمجة محددة.</li>
+          <li>
+            <b>المشاركون في التطوير:</b>
+            <span class="term"
+              >المستخدم (User) · العميل (Customer) · المطوّر (Developer)</span
+            >.
+          </li>
+          <li>
+            <b>تصنيف البرمجيات:</b> نظامية (System) · زمن-حقيقي (Real-time) ·
+            أعمال (Business) · هندسية/علمية · ذكاء اصطناعي · ويب · حاسوب شخصي
+            (PC).
+          </li>
+          <li>
+            <b>الأنظمة الحرجة (Critical Systems):</b> أنظمة يسبب فشلها خسائر
+            مادية/اقتصادية أو أرواح. <b>أنواعها:</b>
+            <span class="term"
+              >سلامة (Safety) · أمن (Security) · اعتمادية (Reliability)</span
+            >
+            · مهام (Mission).
+          </li>
+          <li>
+            <b>أبعاد الاعتمادية:</b> التوافر (Availability) — احتمال توفير
+            الخدمة وقت الطلب؛ الاعتمادية (Reliability) — احتمال تقديم الخدمة
+            صحيحة خلال فترة.
+          </li>
+          <li>
+            <b>خصائص الاعتمادية:</b> سهولة الإصلاح · سهولة الصيانة · القدرة على
+            البقاء (Survivability) · تحمل الأخطاء (Fault tolerance).
+          </li>
+          <li>
+            <b>الاعتمادية ≠ الفائدة:</b> معالج النصوص ليس بالاعتمادية العالية
+            لكنه مفيد جداً (نبني نسخ احتياطية).
+          </li>
+          <li>
+            <b>الأداء (Performance) مقابل الاعتمادية:</b> الأداء = عدم استهلاك
+            موارد (ذاكرة/معالج). كلما زادت الاعتمادية قلّ الأداء غالباً ← ميزة
+            تنازلية (Trade-off).
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="sec">المحاضرة 2 — منهجيات هندسة البرمجيات</h2>
+      <div class="lect">
+        <ul>
+          <li>
+            <b>المنهجية (Methodology):</b>
+            <span class="term">نهج منهجي (Systematic) لتطوير البرمجيات</span>
+            يهدف لإنتاج برمجيات عالية الجودة بأقل تكلفة.
+          </li>
+          <li>
+            <b>الفكرة المشتركة بين كل المنهجيات:</b> بناء نماذج (Models) للنظام
+            وتمثيلها رسومياً لتحليلها.
+          </li>
+          <li>
+            <b>النماذج الإجرائية العامة:</b> الشلال (Waterfall) · التطوير
+            التكراري (Iterative) · هندسة المكونات (Component-based).
+          </li>
+          <li>
+            <b>نموذج عملية البرمجة (Process Model):</b>
+            <span class="term">استراتيجية التطوير</span> باستخدام أدوات وأساليب
+            مناسبة.
+          </li>
+          <li>
+            <b>أساس اختيار النموذج:</b> طبيعة المشروع · الأساليب والأدوات ·
+            مستوى التحكم والأداء المطلوب.
+          </li>
+          <li>
+            <b>منهجيات التطوير (احفظ القائمة):</b>
+            <span class="term"
+              >Build & Fix · Waterfall · Throwaway (Prototype) · Rapid
+              Development (RAD) · Incremental · Spiral · Concurrent · Component
+              · Formal</span
+            >.
+          </li>
+          <li>
+            <b>نموذج البناء والإصلاح (Build & Fix):</b> يصلح للبرامج الصغيرة
+            (100–200 سطر)؛ تكلفة البناء ثم الإصلاح أكبر من المنتجات المصممة
+            جيداً.
+          </li>
+          <li>
+            <b>نموذج الشلال (Waterfall):</b>
+            <span class="term">أول نموذج معتمد (1970)</span>، تسلسلي
+            (Sequential)، <b>لا يمكن الرجوع للمرحلة السابقة</b>.
+            <b>مشاكله:</b> التعديلات تربك الفريق · لا رجوع · صعب تغيير
+            المتطلبات.
+          </li>
+          <li>
+            <b>نموذج التخلص (Throwaway / Prototype):</b> يجمع المتطلبات → تصميم
+            سريع (نموذج أولي) → يُرمى ويُعاد بناؤه صح. <b>مشكلته:</b> العميل يظن
+            النموذج نسخة نهائية.
+          </li>
+          <li>
+            <b>نموذج التطوير السريع (RAD):</b> تكيّف سريع للنموذج الخطي بدورة
+            قصيرة. <b>عيوبه:</b> يحتاج عدداً كبيراً من الناس للمشاريع الكبيرة ·
+            يتطلب التزام المطورين والعملاء.
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="sec">المحاضرة 3 — النماذج التكرارية</h2>
+      <div class="lect">
+        <ul>
+          <li>
+            <b>لماذا النماذج التكرارية؟</b> البرمجيات تتطور، متطلبات العميل
+            تتغير أثناء المشروع ← نحتاج نموذجاً يتكرر.
+          </li>
+          <li>
+            <b>أنواع النماذج التكرارية:</b>
+            <span class="term"
+              >التزايدي (Incremental) · الحلزوني (Spiral) · المتزامن
+              (Concurrent) · تجميع المكونات (Component Assembly) · الشكلي
+              (Formal)</span
+            >.
+          </li>
+          <li>
+            <b>النموذج التزايدي (Incremental):</b> يجمع الخطية المتسلسلة مع
+            التكرار؛ كل زيادة (increment) تُسلَّم للعميل كنسخة.
+          </li>
+          <li>
+            <b>النموذج الحلزوني (Spiral):</b> نموذج تكراري. <b>أنشطته:</b>
+            <span class="term"
+              >التواصل مع العميل · التخطيط · تحليل المخاطر · الهندسة/البناء ·
+              تقييم العميل</span
+            >.
+          </li>
+          <li>
+            <b>النموذج المتزامن (Concurrent):</b> نسخة من الحلزوني لكن أنشطة
+            متعددة تعمل
+            <span class="term">بالتزامن (أكثر من مهمة بوقت واحد)</span>.
+          </li>
+          <li>
+            <b>نموذج تجميع المكونات (Component Assembly):</b> يعتمد على إعادة
+            استخدام مكونات جاهزة؛ تطوّري تكراري.
+          </li>
+          <li>
+            <b>النموذج الشكلي (Formal):</b> مواصفات رياضية دقيقة للبرنامج.
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="sec">المحاضرة 4 — إعادة الاستخدام والتكلفة</h2>
+      <div class="lect">
+        <ul>
+          <li>
+            <b>إعادة الاستخدام (Reuse):</b> الاعتماد على برمجيات موجودة مسبقاً.
+            <b>ما يُعاد استخدامه:</b> التطبيقات · المكونات · الأصناف/الدوال
+            (Classes & Functions).
+          </li>
+          <li>
+            <b>أسباب إعادة الاستخدام:</b> تكلفة صيانة عالية · ضعف الأدوات
+            الداعمة · ضعف الأمان · استهلاك وقت كبير في التصميم.
+          </li>
+          <li>
+            <b>فوائد إعادة الاستخدام:</b>
+            <span class="term"
+              >الاعتمادية · الأمان · توفير الجهد · تطوير سريع</span
+            >.
+          </li>
+          <li><b>تكلفة البرنامج:</b> تكلفة التطوير فقط (لا مواد خام).</li>
+          <li>
+            <b>تصنيف التكلفة:</b> <span class="term">متكررة (Recurring)</span> =
+            أجور العمل + الصيانة؛
+            <span class="term">غير متكررة (Non-recurring)</span> = المعدات
+            (أجهزة، أنظمة تشغيل).
+            <b>التكلفة الكلية = غير المتكررة + المتكررة.</b>
+          </li>
+          <li>
+            <b>شيخوخة البرنامج (Software Aging):</b> برنامج طال أمده دون تحديث.
+            <b>أسبابها:</b> ندرة الصيانة · تآكل البنية · نقص المرونة · توثيق غير
+            كافٍ · غياب التركيبية (Modularity).
+          </li>
+          <li>
+            <b>أنواع البرمجيات:</b> خاصة بالعميل · عامة (تباع في السوق) · مضمّنة
+            (Embedded).
+          </li>
+          <li>
+            <b>أسباب تطوير البرنامج:</b> تغيير متطلبات العميل · مراجعة/إصلاح ·
+            تغيير العتاد · تحسين الأداء · تغيير تنسيق البيانات.
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="sec">المحاضرة 5 — إدارة مشاريع البرمجيات</h2>
+      <div class="lect">
+        <ul>
+          <li>
+            <b>الإدارة في هندسة البرمجيات:</b> تنظيم وترتيب وتخطيط المشاريع.
+            <b>أقسامها:</b>
+            <span class="term"
+              >إدارة المشروع · المخاطر · الأشخاص · الجودة · التهيئة
+              (Configuration)</span
+            >.
+          </li>
+          <li>
+            <b>إدارة المشروع:</b> تنظيم وتخطيط وجدولة المشروع؛ كل المهام يكلّف
+            بها مدير المشروع.
+          </li>
+          <li>
+            <b>مشروع برمجي مقابل مشروع هندسي:</b> البرمجي <b>غير ملموس</b> ويصعب
+            التنبؤ بمشاكله المستقبلية؛ الهندسي ملموس.
+          </li>
+          <li>
+            <b>إدارة المخاطر (Risk Management):</b> التنبؤ بالمخاطر وتجنّبها.
+            <b>مراحلها:</b> تحديد المخاطر · تحليلها · إدارتها.
+          </li>
+          <li>
+            <b>أنواع المخاطر:</b>
+            <span class="term"
+              >تقنية (Technical) · بشرية (Human) · تنظيمية
+              (Organizational)</span
+            >.
+          </li>
+          <li>
+            <b>إدارة الأشخاص:</b> تنظيم الفريق حسب (العدد · الخبرة · نوع
+            المشروع).
+          </li>
+          <li>
+            <b>إدارة الجودة:</b> ضمان تحقيق المستوى المطلوب وتحديد المعايير.
+          </li>
+          <li>
+            <b>إدارة التهيئة (Configuration Management):</b> إدارة تغيّر النظام
+            عبر مخطط موثّق وقاعدة بيانات تسجّل التغييرات.
+          </li>
+        </ul>
+      </div>
+
+      <div class="note">
+        📌 <b>إجابة تكليف SE (فرق المنهجية عن الطريقة):</b>
+        <span class="term">المنهجية (Methodology) أشمل وأعمّ</span> — منهج
+        متكامل يغطي كل دورة الحياة؛ بينما <b>الطريقة (Method)</b> تقنية/إجراء
+        محدد لخطوة معينة. المنهجية تحتوي عدّة طرق. إذن
+        <b>المنهجية هي الأشمل</b>.
+      </div>
+
+      <h2 class="sec">المحاضرات 6–9 (احتياط — مختصرة)</h2>
+      <div class="lect">
+        <h3>L6 — الاختبار (Testing)</h3>
+        <ul>
+          <li>
+            <b>الاختبار:</b> فحص البرنامج لضمان صحّته وسلامته. سببه: اكتشاف
+            الأخطاء وضمان الجودة.
+          </li>
+          <li>
+            <b>أهم الأنواع:</b>
+            <span class="term">الصندوق الأبيض (White box)</span> = رؤية
+            داخلية/هيكلية؛
+            <span class="term">الصندوق الأسود (Black box)</span> = رؤية خارجية
+            بلا اطلاع داخلي.
+          </li>
+          <li>
+            أخرى: تكاملي · وظيفي (Functional) · أداء (Performance) · اعتمادية ·
+            دخان (Smoke) · إصدار · Beta · Alpha · انحدار (Regression).
+          </li>
+        </ul>
+        <h3>L7 — الصيانة (Maintenance)</h3>
+        <ul>
+          <li>
+            <b>الصيانة:</b> تطوير البرنامج وتكييفه مع بيئته وإصلاح أخطائه.
+          </li>
+          <li>
+            <b>تصنيف الأخطاء:</b> <span class="term">نحوية (Syntax)</span> — خطأ
+            في قواعد اللغة؛ <span class="term">منطقية (Logical)</span> — خطأ في
+            المنطق (مثل القسمة على صفر).
+          </li>
+        </ul>
+        <h3>L8 — الجودة (Quality)</h3>
+        <ul>
+          <li>
+            <b>أنواع الجودة:</b> <span class="term">خارجية</span> (قابلية
+            الاستخدام، الكفاءة، الاعتمادية، الصيانة، إعادة الاستخدام) ·
+            <span class="term">داخلية</span> (المرونة، الفهم، التفاعل مع الأنظمة
+            الأخرى).
+          </li>
+          <li>
+            <b>مقاييس التعقيد:</b> عدد سطور الكود · نموذج Halstead · مقياس
+            McCabe.
+          </li>
+          <li><b>معايير ISO</b> للجودة صدرت 1991.</li>
+        </ul>
+        <h3>L9 — الأمان (Security)</h3>
+        <ul>
+          <li>
+            <b>الأمان:</b> سياسة لحماية البرنامج من التهديدات. <b>المكوّنات:</b>
+            <span class="term"
+              >السرّية (Confidentiality) · السلامة (Integrity)</span
+            >.
+          </li>
+          <li>
+            <b>أنواع الهجمات:</b> <span class="term">سلبي (Passive)</span> —
+            مراقبة فقط؛ <span class="term">نشط (Active)</span> —
+            حذف/تعديل/إضافة.
+          </li>
+          <li>
+            <b>القياس الحيوي (Biometrics):</b> علم يستخدم الخصائص الحيوية للتحقق
+            من الهوية.
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="tab" id="notes">
+      <div class="note">
+        ⚡ <b>هذه النسخة بنص السلايدات الكامل</b> — كل نقطة في كل شريحة، مو
+        ملخّص. اقرأها كلها، ثم العب البطاقات وحل الاختبار. النصفي = L1–L6 فقط.
+      </div>
+
+      <div class="part">المحاضرة 1 · مقدمة في هندسة البرمجيات</div>
+      <div class="lect">
+        <div class="slide">
+          <span class="t">مفهوم هندسة البرمجيات</span> هي
+          <span class="term"
+            >الفرع الهندسي الذي يتعامل مع جميع جوانب إنتاج البرمجيات</span
+          >. مهنة تتعلق بتطوير وتصميم برمجيات عالية الجودة، مع مراعاة تخصصات
+          ومتطلبات المستخدم على كل المستويات.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >تكاليف هندسة البرمجيات <span class="en">Cost of SE</span></span
+          >
+          <span class="fire">مرجّح</span> نحو <b>60%</b> تكاليف تطوير، ونحو
+          <b>40%</b> تكاليف اختبار.
+        </div>
+        <div class="slide">
+          <span class="t">مفهوم البرنامج</span> هو مجموعة تعليمات مترابطة لحل
+          مشكلة معينة.
+        </div>
+        <div class="slide">
+          <span class="t">تطوير البرمجيات</span> عملية إنشاء برنامج فردي
+          باستخدام لغة برمجة محددة.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >سمات البرمجيات الجيدة <span class="en">Attributes</span></span
+          >
+          <span class="fire">مرجّح</span>
+          <b>قابلية الصيانة (Maintainability):</b> تقبل احتياجات التغيير.
+          <b>الاعتمادية (Dependability):</b> ألا يسبب النظام ضرراً كبيراً عند
+          الفشل. <b>الكفاءة (Efficiency):</b> عدم هدر الموارد كالذاكرة والمعالج.
+          <b>قابلية الاستخدام (Usability):</b> أن يفهمها المستخدم ويستعملها.
+        </div>
+        <div class="slide">
+          <span class="t">المشاركون في تطوير البرمجيات</span>
+          <span class="term"
+            >المستخدم (User) · العميل (Customer) · المطوّر (Developer)</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">تصنيف البرمجيات (7 أنواع)</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >نظامية (System) · زمن-حقيقي (Real-time) · أعمال (Business) · هندسية
+            وعلمية · ذكاء اصطناعي (AI) · ويب · حاسوب شخصي (PC)</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >الأنظمة الحرجة <span class="en">Critical Systems</span></span
+          >
+          أنظمة لا تتوفر فيها الاعتمادية، ويسبب ضررها خسائر اقتصادية ومادية وفقد
+          أرواح.
+        </div>
+        <div class="slide">
+          <span class="t">أنواع الأنظمة الحرجة (4)</span>
+          <span class="fire">مرجّح</span>
+          <b>1- من حيث السلامة (Safety):</b> فشلها يؤدي لإصابات بشرية أو أضرار
+          بيئية. <b>2- من حيث الأمن (Security):</b> فشلها يسبب خسارة كبيرة.
+          <b>3- من حيث الاعتمادية (Reliability).</b>
+          <b>4- من حيث العمل/المهمة (Work/Mission).</b>
+        </div>
+        <div class="slide">
+          <span class="t">أين تحدث أعطال الأنظمة الحرجة؟ (3 مكوّنات)</span>
+          <span class="term">عتاد (Hardware):</span> مكوّنات مادية تفشل لخطأ
+          تصميم أو بلوغ نهاية عمرها.
+          <span class="term">برنامج (Software):</span> يفشل بسبب أخطاء
+          تحليل/تصميم/فحص. <span class="term">بشري (Human):</span> يفشل المشغّل
+          بسبب قلة الخبرة.
+        </div>
+        <div class="slide">
+          <span class="t">أبعاد اعتمادية الأنظمة (4 أبعاد)</span>
+          <span class="fire">مرجّح</span> <b>التوافر (Availability):</b> احتمال
+          توفير النظام خدماته وقت الطلب. <b>الاعتمادية (Reliability):</b> احتمال
+          تقديم خدماته المتوقعة صحيحة خلال فترة زمنية محددة.
+          <b>السلامة (Safety):</b> ما احتمال أن يسبب النظام ضرراً للإنسان
+          وبيئته؟ <b>الأمن (Security):</b> ما احتمال قدرة النظام على معالجة
+          الاختراق؟
+        </div>
+        <div class="slide">
+          <span class="t">هل الاعتمادية والفائدة متطابقتان؟</span> لا. مثال
+          معالج النصوص: ليس بالاعتمادية العالية لكنه مفيد جداً، لذلك نحفظ نسخاً
+          احتياطية كثيراً — وهذا يعكس قلة الثقة بالنظام.
+        </div>
+        <div class="slide">
+          <span class="t">خصائص اعتمادية الأنظمة</span> سهولة الإصلاح · سهولة
+          الصيانة · <b>القدرة على البقاء (Survivability):</b> تقديم الخدمة حتى
+          أثناء الاختراق أو شلّ أحد أجزائه ·
+          <b>تحمّل الأخطاء (Fault Tolerance):</b> تحمّل النظام للأخطاء البشرية.
+        </div>
+        <div class="slide">
+          <span class="t">أداء النظام وعلاقته بالاعتمادية</span> الأداء = عدم
+          استهلاك موارد حاسوبية (ذاكرة، معالج). يبحث المصمّم عن حل تنازلي
+          (Trade-off) بين الأداء والاعتمادية. كلما زادت الاعتمادية والتوافر
+          والأمن والسلامة، تأثّر الأداء.
+        </div>
+      </div>
+
+      <div class="part">المحاضرة 2 · منهجيات هندسة البرمجيات</div>
+      <div class="lect">
+        <div class="slide">
+          <span class="t">المنهجية <span class="en">Methodology</span></span>
+          <span class="term">نهج منهجي لتطوير البرمجيات</span> يهدف لتسهيل إنتاج
+          منتجات برمجية عالية الجودة بأقل تكلفة.
+        </div>
+        <div class="slide">
+          <span class="t">الفكرة الأساسية المشتركة بين كل المنهجيات</span> تطوير
+          نماذج (Models) للنظام لدراسته وتحليله، بحيث نمثّلها رسومياً.
+        </div>
+        <div class="slide">
+          <span class="t">النماذج الإجرائية العامة</span> الشلال (Waterfall) ·
+          التطوير التكراري (Iterative) · هندسة المكونات (Component-based).
+        </div>
+        <div class="slide">
+          <span class="t"
+            >نموذج عملية البرمجة <span class="en">Process Model</span></span
+          >
+          استراتيجية التطوير في عملية البرمجة عبر استخدام أساليب وأدوات مناسبة.
+        </div>
+        <div class="slide">
+          <span class="t">على أي أساس يُختار النموذج؟</span>
+          <span class="term"
+            >طبيعة المشروع/التطبيقات · الأساليب والأدوات المستخدمة · مستوى
+            التحكم والأداء المطلوب</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">منهجيات التطوير (القائمة الكاملة)</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >Build and Fix · Waterfall · Throwaway · Rapid Development (RAD) ·
+            Incremental · Spiral · Concurrent · Component</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >نموذج البناء والإصلاح <span class="en">Build & Fix</span></span
+          >
+          يصلح لتمارين البرمجة الصغيرة (100–200 سطر). تكلفة البناء ثم الإصلاح
+          أكبر بكثير من تكلفة المنتجات المصممة جيداً.
+        </div>
+        <div class="slide">
+          <span class="t">نموذج الشلال <span class="en">Waterfall</span></span>
+          <b>أول نموذج يُعتمد</b> لتطوير البرمجيات، اشتُقّ من إجراءات هندسة
+          النظم 1970. يُسمّى النموذج المتسلسل (Sequential)، حيث
+          <b>لا يمكن الرجوع للمراحل السابقة</b>.
+        </div>
+        <div class="slide">
+          <span class="t">مراحل الشلال</span> <span class="fire">مرجّح</span>
+          <span class="term"
+            >التحليل (Analysis) ← التصميم (Design) ← البرمجة والتنفيذ (Code) ←
+            الاختبار (Testing) ← التشغيل والصيانة (Maintenance)</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">مشاكل الشلال</span> <span class="fire">مرجّح</span> 1)
+          التعديلات تسبب ارتباكاً بتقدّم الفريق. 2) لا يمكن الرجوع للخطوات
+          السابقة. 3) يصعب على العميل غالباً وضع كل متطلباته بوضوح.
+        </div>
+        <div class="slide">
+          <span class="t">نموذج التخلص <span class="en">Throwaway</span></span>
+          يبدأ بجمع المتطلبات، يجتمع المطوّر والعميل لتحديد الأهداف، ثم تصميم
+          سريع يُقدَّم للعميل كنموذج أولي (Prototype) يقيّمه ويستخدم لتصفية
+          المتطلبات.
+        </div>
+        <div class="slide">
+          <span class="t">أسباب مشاكل Throwaway</span> 1) العميل يرى النموذج
+          كأنه نسخة عاملة صحيحة، ولا يدرك أن جودته الإجمالية لم تُؤخذ بعين
+          الاعتبار لسرعة تنفيذه. 2) المطوّر يتجاوز بعض الخطوات ليجعله يعمل بسرعة
+          (نظام تشغيل أو لغة برمجة غير مناسبة).
+        </div>
+        <div class="slide">
+          <span class="t"
+            >نموذج التطوير السريع <span class="en">RAD</span></span
+          >
+          شكل متسلسل يهتم بدورة تطوير قصيرة جداً، تكيّف سريع للنموذج الخطي
+          المتسلسل.
+        </div>
+        <div class="slide">
+          <span class="t">عيوب RAD</span> <span class="fire">مرجّح</span> 1)
+          يحتاج عدداً كبيراً من الناس في المشاريع الكبيرة. 2) يتطلب مطورين
+          وعملاء ملتزمين بإكمال المشروع بوقت قصير (فشل أحد الطرفين = فشل كلي).
+          3) <b>غير مناسب لمشاريع الأمن العالي</b>. 4) بسبب السرعة قد تحدث أخطاء
+          جسيمة.
+        </div>
+      </div>
+
+      <div class="part">المحاضرة 3 · النماذج التكرارية</div>
+      <div class="lect">
+        <div class="slide">
+          <span class="t">لماذا النماذج التكرارية؟</span> يتنامى الإدراك بأن
+          البرمجيات كالأنظمة المعقّدة تتطور بمرور الوقت؛ متطلبات العمل والمنتج
+          تتغير، ومتطلبات العميل قد تتغير أثناء المشروع. لذا نحتاج نموذجاً
+          يستوعب منتجاً متطوراً = النموذج التكراري.
+        </div>
+        <div class="slide">
+          <span class="t">أنواع النماذج التكرارية (5)</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >التزايدي (Incremental) · الحلزوني (Spiral) · المتزامن (Concurrent)
+            · تجميع المكونات (Component Assembly) · الشكلي (Formal)</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">النموذج التزايدي</span> يجمع عناصر النموذج الخطي
+          المتسلسل مطبّقة تكرارياً بفلسفة تكرارية. كل زيادة تُصنع للبرنامج
+          وتُسلَّم نسخة للعميل.
+        </div>
+        <div class="slide">
+          <span class="t">النموذج الحلزوني وأنشطته</span>
+          <span class="fire">مرجّح</span> نموذج تكراري، ينقسم لأنشطة:
+          <span class="term"
+            >التواصل مع العميل ← التخطيط ← تحليل المخاطر ← الهندسة والبناء
+            والإصدار ← تقييم العميل</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >النموذج المتزامن <span class="en">Concurrent</span></span
+          >
+          نموذج حلزوني تُزامن فيه أكثر من نشاط. يلبّي احتياجات المستخدم، وهنا
+          نقصد أكثر من مهمة في وقت واحد.
+        </div>
+        <div class="slide">
+          <span class="t">نموذج تجميع المكونات</span> يعتمد على مكوّنات هندسة
+          برمجيات. يستخدم خصائص الحلزوني، وهو تطوّري بطبيعته ويتطلب أسلوباً
+          تكرارياً.
+        </div>
+        <div class="slide">
+          <span class="t">النموذج الشكلي <span class="en">Formal</span></span>
+          يشمل أنشطة تؤدي إلى مواصفات رياضية للبرنامج. يتيح للمهندس وصف وتطوير
+          والتحقق من النظام برموز رياضية دقيقة، ويكشف المشاكل ويصحّحها أسهل.
+        </div>
+        <div class="slide">
+          <span class="t">إعادة الاستخدام <span class="en">Reuse</span></span>
+          إجراءات التطوير تعتمد على إعادة استخدام برمجيات موجودة. جاءت لتقليل
+          تكاليف البرنامج والصيانة.
+        </div>
+        <div class="slide">
+          <span class="t">ما الوحدات التي يُعاد استخدامها؟ (3)</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >التطبيقات · المكونات · الأصناف والدوال (Classes & Functions)</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">أسباب إعادة الاستخدام (4)</span>
+          <span class="fire">مرجّح</span> 1) تكلفة صيانة عالية. 2) ضعف الأدوات
+          الداعمة. 3) ضعف الأمان. 4) استهلاك وقت كبير في تصميم البرنامج.
+        </div>
+        <div class="slide">
+          <span class="t">فوائد إعادة الاستخدام (4)</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >1) الاعتمادية. 2) الأمان. 3) توفير الجهد/الوقت. 4) التطوير
+            السريع</span
+          >.
+        </div>
+      </div>
+
+      <div class="part">المحاضرة 4 · إعادة الاستخدام والتكلفة (تفصيل)</div>
+      <div class="lect">
+        <div class="slide">
+          <span class="t"
+            >إمكانية إعادة الاستخدام <span class="en">Reusability</span></span
+          >
+          جزء من الكود يمكن استخدامه مجدداً لإضافة وظائف جديدة بتعديلات بسيطة أو
+          بدون تعديلات.
+        </div>
+        <div class="slide">
+          <span class="t">تكلفة البرنامج</span> تكلفة البرنامج = تكلفة التطوير،
+          ولا توجد تكلفة أخرى (مثل المواد الخام).
+        </div>
+        <div class="slide">
+          <span class="t">تصنيف تكلفة البرنامج</span>
+          <span class="term">تكلفة متكررة (Recurring):</span> تكلفة العمالة
+          (تُدفع بشكل متكرر) + الصيانة.
+          <span class="term">تكلفة غير متكررة (Non-recurring):</span> تكلفة لمرة
+          واحدة (هندسية) لشراء المعدات كالحواسيب وأنظمة التشغيل والبرامج.
+        </div>
+        <div class="slide">
+          <span class="t">معادلة التكلفة</span> <span class="fire">مرجّح</span>
+          <b>التكلفة = التكلفة غير المتكررة + التكلفة المتكررة</b>.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >شيخوخة البرنامج <span class="en">Software Aging</span></span
+          >
+          برنامج يحتاج تطويراً ويمرّ بفترة طويلة دون تحديث.
+        </div>
+        <div class="slide">
+          <span class="t">أسباب شيخوخة البرنامج (5)</span>
+          <span class="fire">مرجّح</span> 1) ندرة صيانة البرنامج. 2) تآكل البنية
+          المعمارية (Architecture Erosion). 3) نقص المرونة. 4) توثيق غير كافٍ.
+          5) غياب التركيبية (Miss of Modularity).
+        </div>
+        <div class="slide">
+          <span class="t">أنواع البرمجيات</span> 1) خاصة بالعملاء (حسب طلباتهم).
+          2) عامة تُباع في السوق. 3) مضمّنة (Embedded).
+        </div>
+        <div class="slide">
+          <span class="t">الأشخاص المخوّلون بتطوير وإدارة هندسة البرمجيات</span>
+          المستخدم · العميل · مطوّرو البرمجيات · مدير التطوير.
+        </div>
+        <div class="slide">
+          <span class="t">أنواع مشاريع هندسة البرمجيات</span> 1) مشاريع تصحيحية
+          (Corrective). 2) مشاريع تكيفية (Adaptive): تغيير في النظام.
+        </div>
+        <div class="slide">
+          <span class="t">أسباب تطوير البرمجيات (5)</span> 1) تغيير متطلبات
+          العميل. 2) مراجعة/إصلاح عادي. 3) تغيير العتاد. 4) تغيير الأداء وتحسين
+          الكفاءة. 5) تغيير تنسيق البيانات.
+        </div>
+      </div>
+
+      <div class="part">المحاضرة 5 · إدارة مشاريع البرمجيات</div>
+      <div class="lect">
+        <div class="slide">
+          <span class="t">الإدارة في هندسة البرمجيات</span> تُعرَّف عامة بأنها
+          تنظيم وترتيب وتخطيط المشاريع. وبالنسبة لمشاريع البرمجيات تنقسم لأقسام.
+        </div>
+        <div class="slide">
+          <span class="t">أقسام الإدارة (5)</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >إدارة المشروع · المخاطر · الأشخاص · الجودة · التهيئة
+            (Configuration)</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">إدارة المشروع</span> تنظيم وتخطيط وجدولة مشروع
+          البرمجيات. كل المهام تُسند لمدير المشروع.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >الفرق بين إدارة المشروع البرمجي وإدارة المشروع الهندسي</span
+          >
+          1) المشروع البرمجي <b>غير ملموس</b>، أما الهندسي فملموس. 2) حجم
+          المشروع البرمجي يجعل التنبؤ بالمشاكل المستقبلية صعباً جداً، والهندسي
+          عكس ذلك.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >إدارة المخاطر <span class="en">Risk Management</span></span
+          >
+          التنبؤ بالمخاطر والمشاكل التي تواجه المشروع، واتخاذ إجراءات لتجنّبها
+          وخطط لتقليلها.
+        </div>
+        <div class="slide">
+          <span class="t">مراحل إدارة المخاطر (3)</span>
+          <span class="term"
+            >1) تحديد المخاطر التي قد تقع. 2) تحليل المخاطر. 3) إدارة
+            المخاطر</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">أنواع المخاطر/التهديدات البرمجية (6)</span>
+          <span class="fire">مرجّح</span> <b>تقنية (Technical):</b> في عتاد أو
+          برامج التطوير. <b>بشرية (Human):</b> مرتبطة بالأفراد.
+          <b>تنظيمية/تنظيمية (Regulatory):</b> من بيئة الشركة المطوّرة.
+          <b>الأدوات (Toolkit):</b> من الأدوات المستخدمة وبرامج الدعم.
+          <b>المتطلبات (Requirements):</b> تغيّر متطلبات العميل.
+          <b>التقييم (Evaluation):</b> من ضعف تقييم المشروع.
+        </div>
+        <div class="slide">
+          <span class="t">إدارة الأشخاص</span> إدارة الأفراد المشاركين في
+          التطوير والتحليل. <b>ما يحدّد تنظيم الفريق؟</b> عدد الأفراد · خبرة
+          الأفراد · نوع المشروع (كل مشروع له أسلوب تنظيم).
+        </div>
+        <div class="slide">
+          <span class="t">قضايا إدارة الأشخاص</span> تنظيم الأفراد في فرق صغيرة
+          وتوزيع المهام · التنسيق بين الفرق عند تعددها · تفعيل التواصل · التحكم
+          بأداء الفرق · الناس ليسوا أجهزة (لا يوجد معيار ثابت، فلا بد من
+          التفاهم).
+        </div>
+        <div class="slide">
+          <span class="t">أمثلة على أهداف المشروع</span> مستوى صحة عالٍ (عامل
+          جودة) · إكمال المشروع بوقت محدد · تفعيل التوافق مع برامج أخرى · تحسين
+          الأداء ضمن حدود معيارية · إمكانية الإصلاح المستقبلي · وضوح الأدوات
+          والتقنيات لقياس تقدّم الفرق.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >إدارة الجودة <span class="en">Quality Management</span></span
+          >
+          تُعنى بإدارة جودة عملية البرنامج والمنتج، وضمان تحقيق المستوى المطلوب،
+          وتحديد المعايير والإجراءات المرغوبة وضمان اتباعها، وبناء ثقافة جودة.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >إدارة التهيئة
+            <span class="en">Configuration Management</span></span
+          >
+          إدارة تغيّر النظام لمنتجات البرمجيات، وإقامة مخطط موثّق رسمياً، وإدارة
+          المستندات في قاعدة بيانات تسجّل معلومات عن التغيير.
+        </div>
+      </div>
+
+      <div class="part">المحاضرة 6 · مرحلة الاختبار</div>
+      <div class="lect">
+        <div class="slide">
+          <span class="t"
+            >اختبار البرمجيات <span class="en">Software Testing</span></span
+          >
+          عملية فحص البرنامج لضمان صحّته وسلامته. جزء حيوي من التطوير لضمان
+          الجودة. <b>من السمات التي يبحث عنها:</b> السعة، الاعتمادية، الكفاءة،
+          قابلية التوسّع، التكيّف، قابلية الاستخدام.
+        </div>
+        <div class="slide">
+          <span class="t">الاختبار الجيد</span> لا يُخرج الأخطاء فقط بل يُدخل
+          معلومات جديدة ومثيرة للمشروع، وله دور استراتيجي لرفع جودة المنتج في
+          هرم عملية التطوير.
+        </div>
+        <div class="slide">
+          <span class="t">لماذا نحتاج الاختبار؟</span> لكشف الأخطاء · لأنه يساهم
+          في الجودة · لأن أي خطأ أو عيب أو فشل مرفوض.
+        </div>
+        <div class="slide">
+          <span class="t">أسباب أخطاء البرمجيات</span> أخطاء في التوصيف والتحليل
+          والتصميم · أخطاء في استخدام النظام · عدم توافق بيئة التشغيل · عدم
+          تحديث البرنامج.
+        </div>
+        <div class="slide">
+          <span class="t">الخطوات الأساسية للاختبار</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >التخطيط والتحكم ← التحكم ← التحليل والتصميم ← التنفيذ ← التطبيق ←
+            تقييم المعايير ← إغلاق الأنشطة</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t">أنواع اختبار البرمجيات</span>
+          <span class="fire">مرجّح</span>
+          <span class="term"
+            >الصندوق الأبيض · اختبار الوحدة · الثابت · الصندوق الأسود · التكاملي
+            · الوظيفي · الأداء · الاعتمادية · المخصّص · الدخان (Smoke) · النظام
+            · الإصدار · Beta · الانحدار (Regression) · Alpha</span
+          >.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >اختبار الصندوق الأبيض <span class="en">White Box</span></span
+          >
+          يعطي رؤية داخلية للبرنامج، يهتم بالقياس الدقيق داخل الصندوق (اختبار
+          بنيوي/هيكلي).
+        </div>
+        <div class="slide">
+          <span class="t"
+            >اختبار الصندوق الأسود <span class="en">Black Box</span></span
+          >
+          يعطي رؤية خارجية للبرنامج، يختبر الجوانب التقنية دون أي إشارة للبنية
+          الداخلية للبرنامج.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >الاختبار التكاملي <span class="en">Integration</span></span
+          >
+          اختبار مكوّنات النظام (جاهزة، أو قابلة لإعادة الاستخدام عُدّلت، أو
+          مطوّرة حديثاً).
+        </div>
+        <div class="slide">
+          <span class="t"
+            >الاختبار الوظيفي <span class="en">Functional</span></span
+          >
+          مبني على الوظيفة، يقوم على 5 نقاط: الملاءمة، التشغيل، الأمان، الدقة،
+          الالتزام.
+        </div>
+        <div class="slide">
+          <span class="t">اختبار الأداء</span> متعلق بأداء النظام (مثال: الأداء
+          والاعتمادية لتحقيق الجودة).
+        </div>
+        <div class="slide">
+          <span class="t">اختبار الاعتمادية</span> التأكد من خلو النظام من
+          الأخطاء وعمله بشكل صحيح لتحقيق الجودة.
+        </div>
+        <div class="slide">
+          <span class="t">اختبار الدخان <span class="en">Smoke</span></span>
+          يهتم بالوظيفة الرئيسية للنظام ولا يهتم بالوظائف التفصيلية.
+        </div>
+        <div class="slide">
+          <span class="t">اختبار الإصدار <span class="en">Version</span></span>
+          متعلق بإصدار البرنامج الموزّع على العملاء، لتعزيز ثقة المطوّر بأن
+          النظام يلبي متطلباته.
+        </div>
+        <div class="slide">
+          <span class="t">اختبار Beta</span> شكل من اختبارات القبول الخارجي
+          لبرنامج جاهز للحصول على تغذية راجعة من السوق.
+        </div>
+        <div class="slide">
+          <span class="t"
+            >اختبار الانحدار <span class="en">Regression</span></span
+          >
+          اختبار عيوب جديدة في المنتج بعد إصلاح بعض العيوب.
+        </div>
+        <div class="slide">
+          <span class="t">اختبار Alpha</span> شكل من اختبارات القبول الداخلي
+          لبرنامج جاهز للحصول على تغذية راجعة.
+        </div>
+      </div>
+
+      <div class="note">
+        📌 <b>سؤال تكليف SE:</b> المنهجية (Methodology) <b>أشمل</b> من الطريقة
+        (Method) — منهج متكامل يغطي دورة الحياة كاملة، بينما الطريقة تقنية محددة
+        لخطوة معينة.
+      </div>
+    </div>
+
+    <!-- PREDICT -->
+    <div class="tab" id="predict">
+      <h2 class="sec">🔥 توقعات الاختبار</h2>
+      <div class="pred">
+        د. عبدالماجد يركّز على <b>القوائم والتصنيفات والمقارنات والمراحل</b>.
+        احفظ كل قائمة <b>بالعدد</b>. الأكيد تقريباً: تصنيف البرمجيات (7)، سمات
+        الجيد، أنواع الأنظمة الحرجة (4) + مكوّنات أعطالها (3)، أبعاد الاعتمادية
+        (4)، قائمة النماذج (8) + مراحل الشلال + مشاكلها، أنشطة الحلزوني، إعادة
+        الاستخدام (3/4/4)، معادلة التكلفة + شيخوخة (5)، أقسام الإدارة (5) +
+        أنواع المخاطر (6)، أنواع الاختبار + الأبيض/الأسود + الخطوات.
+      </div>
+      <div class="note">
+        نمط الأسئلة المتوقّعة: عرّف / اذكر أنواع / قارن / عدّد المزايا والعيوب /
+        أيهما الأشمل / اذكر الأسباب.
+      </div>
+    </div>
+
+    <!-- COMPARE -->
+    <div class="tab" id="compare">
+      <h2 class="sec">⚖️ جدول النماذج</h2>
+      <table>
+        <tr>
+          <th>النموذج</th>
+          <th>الفكرة</th>
+          <th>المميزات</th>
+          <th>العيوب</th>
+          <th>الاستخدام</th>
+        </tr>
+        <tr>
+          <td><b>Build & Fix</b></td>
+          <td>اكتب ثم أصلح</td>
+          <td>بسيط</td>
+          <td>لا تخطيط، إصلاح مكلف، فوضوي</td>
+          <td>100–200 سطر</td>
+        </tr>
+        <tr>
+          <td><b>Waterfall</b></td>
+          <td>تسلسلي لا رجوع (1970)</td>
+          <td>منظّم، توثيق جيد</td>
+          <td>لا رجوع، صعب تغيير المتطلبات</td>
+          <td>متطلبات ثابتة</td>
+        </tr>
+        <tr>
+          <td><b>Throwaway</b></td>
+          <td>نموذج أولي ثم يُرمى</td>
+          <td>يوضّح المتطلبات</td>
+          <td>العميل يظنه نهائياً + تجاوزات المطوّر</td>
+          <td>متطلبات غامضة</td>
+        </tr>
+        <tr>
+          <td><b>RAD</b></td>
+          <td>دورة قصيرة</td>
+          <td>سرعة</td>
+          <td>
+            فريق كبير + التزام عالٍ + غير مناسب للأمن العالي + أخطاء السرعة
+          </td>
+          <td>وقت ضيق</td>
+        </tr>
+        <tr>
+          <td><b>Incremental</b></td>
+          <td>خطية+تكرار</td>
+          <td>تسليم تدريجي</td>
+          <td>يحتاج بنية للتوسعة</td>
+          <td>تسليم تدريجي</td>
+        </tr>
+        <tr>
+          <td><b>Spiral</b></td>
+          <td>تكراري بمخاطر</td>
+          <td>تركيز على المخاطر</td>
+          <td>معقّد ومكلف</td>
+          <td>مشاريع كبيرة عالية المخاطر</td>
+        </tr>
+        <tr>
+          <td><b>Concurrent</b></td>
+          <td>حلزوني متزامن</td>
+          <td>يلبّي الاحتياجات</td>
+          <td>تعقيد التنسيق</td>
+          <td>تزامن أنشطة</td>
+        </tr>
+        <tr>
+          <td><b>Component</b></td>
+          <td>مكونات جاهزة</td>
+          <td>سرعة واعتمادية</td>
+          <td>يعتمد على توافر مكوّنات</td>
+          <td>مكوّنات متوفرة</td>
+        </tr>
+        <tr>
+          <td><b>Formal</b></td>
+          <td>مواصفات رياضية</td>
+          <td>دقة عالية</td>
+          <td>معقّد ومكلف</td>
+          <td>أنظمة حرجة</td>
+        </tr>
+      </table>
+      <h2 class="sec">🆚 مقارنات مفاهيمية</h2>
+      <table>
+        <tr>
+          <th>المنهجية Methodology</th>
+          <th>النموذج Model</th>
+          <th>الطريقة Method</th>
+        </tr>
+        <tr>
+          <td><b>الأشمل</b> — منهج متكامل لدورة الحياة</td>
+          <td>إطار تطوير</td>
+          <td>تقنية لخطوة معينة</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th>الصندوق الأبيض</th>
+          <th>الصندوق الأسود</th>
+        </tr>
+        <tr>
+          <td>رؤية داخلية/هيكلية للكود (بنيوي)</td>
+          <td>رؤية خارجية للوظائف بلا بنية داخلية</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th>مشروع برمجي</th>
+          <th>مشروع هندسي</th>
+        </tr>
+        <tr>
+          <td>غير ملموس، يصعب التنبؤ بمشاكله</td>
+          <td>ملموس</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th>تكلفة متكررة Recurring</th>
+          <th>غير متكررة Non-recurring</th>
+        </tr>
+        <tr>
+          <td>العمالة + الصيانة (متكررة)</td>
+          <td>المعدات: حواسيب، أنظمة تشغيل (لمرة واحدة)</td>
+        </tr>
+      </table>
+      <p class="tip">التكلفة الكلية = غير المتكررة + المتكررة</p>
+      <table>
+        <tr>
+          <th>4 أبعاد الاعتمادية</th>
+          <th>4 أنواع الأنظمة الحرجة</th>
+        </tr>
+        <tr>
+          <td>التوافر · الاعتمادية · السلامة · الأمن</td>
+          <td>سلامة · أمن · اعتمادية · عمل/مهمة</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th>3 مكوّنات أعطال الأنظمة</th>
+          <th>6 أنواع المخاطر</th>
+        </tr>
+        <tr>
+          <td>عتاد · برنامج · بشري</td>
+          <td>تقنية · بشرية · تنظيمية · أدوات · متطلبات · تقييم</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- CARDS -->
+    <div class="tab" id="cards">
+      <h2 class="sec">🃏 بطاقات المراجعة</h2>
+      <div class="fc-count" id="fc-count"></div>
+      <div class="fc-controls">
+        <button onclick="fcShuffle()">🔀 خلط</button
+        ><button onclick="fcFlipAll()">🔄 قلب الكل</button
+        ><button onclick="fcReset()">↩️ إعادة</button>
+      </div>
+      <div class="fc-wrap" id="fc-wrap"></div>
+    </div>
+
+    <!-- QA -->
+    <div class="tab" id="qa">
+      <h2 class="sec">❓ أسئلة متوقعة</h2>
+      <p class="tip">اضغط السؤال للإجابة.</p>
+      <div id="qa-wrap"></div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="tab" id="quiz">
+      <h2 class="sec">🎯 اختبر نفسك</h2>
+      <div id="quiz-box"></div>
+    </div>
+
+    <script>
+      function show(id, btn) {
+        document
+          .querySelectorAll(".tab")
+          .forEach((t) => t.classList.remove("active"));
+        document
+          .querySelectorAll("nav button")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        btn.classList.add("active");
+        if (id === "cards" && !FC.done) buildCards();
+        if (id === "qa" && !QA.done) buildQA();
+        if (id === "quiz") initQuiz();
+        document.querySelector('nav').scrollIntoView({ behavior: 'auto' });
+      }
+      const CARDS = [
+        [
+          "تعريف هندسة البرمجيات",
+          "الفرع الهندسي الذي يتعامل مع جميع جوانب إنتاج البرمجيات؛ مهنة تطوير وتصميم برمجيات عالية الجودة وفق متطلبات المستخدم.",
+        ],
+        ["تكاليف هندسة البرمجيات", "~60% تطوير و~40% اختبار."],
+        ["تعريف البرنامج", "مجموعة تعليمات مترابطة لحل مشكلة معينة."],
+        [
+          "سمات البرمجيات الجيدة (4)",
+          "قابلية الصيانة، الاعتمادية، الكفاءة، قابلية الاستخدام.",
+        ],
+        ["المشاركون في تطوير البرمجيات", "المستخدم، العميل، المطوّر."],
+        [
+          "تصنيف البرمجيات (7)",
+          "نظامية، زمن-حقيقي، أعمال، هندسية/علمية، ذكاء اصطناعي، ويب، حاسوب شخصي.",
+        ],
+        [
+          "تعريف الأنظمة الحرجة",
+          "أنظمة لا تتوفر فيها الاعتمادية، ويسبب ضررها خسائر اقتصادية/مادية وفقد أرواح.",
+        ],
+        [
+          "أنواع الأنظمة الحرجة (4)",
+          "سلامة (Safety)، أمن (Security)، اعتمادية (Reliability)، عمل/مهمة (Work/Mission).",
+        ],
+        [
+          "مكوّنات أعطال الأنظمة الحرجة (3)",
+          "العتاد (Hardware)، البرنامج (Software)، المكوّن البشري (Human).",
+        ],
+        ["أبعاد اعتمادية الأنظمة (4)", "التوافر، الاعتمادية، السلامة، الأمن."],
+        [
+          "خصائص الاعتمادية",
+          "سهولة الإصلاح، سهولة الصيانة، القدرة على البقاء، تحمّل الأخطاء.",
+        ],
+        [
+          "الأداء مقابل الاعتمادية",
+          "الأداء = عدم استهلاك موارد. زيادة الاعتمادية تقلّل الأداء (تنازل/trade-off).",
+        ],
+        [
+          "تعريف المنهجية",
+          "نهج منهجي لتطوير البرمجيات لإنتاج منتجات عالية الجودة بأقل تكلفة.",
+        ],
+        [
+          "الفكرة المشتركة بين المنهجيات",
+          "بناء نماذج (Models) للنظام وتمثيلها رسومياً لتحليلها.",
+        ],
+        [
+          "أساس اختيار النموذج",
+          "طبيعة المشروع، الأساليب والأدوات، التحكم والأداء المطلوب.",
+        ],
+        [
+          "قائمة نماذج التطوير (8)",
+          "Build&Fix، Waterfall، Throwaway، RAD، Incremental، Spiral، Concurrent، Component.",
+        ],
+        [
+          "نموذج Build & Fix",
+          "يصلح للبرامج الصغيرة (100-200 سطر)؛ تكلفة الإصلاح أكبر من المنتجات المصممة جيداً.",
+        ],
+        [
+          "نموذج الشلال ومراحله",
+          "أول نموذج (1970)، تسلسلي لا رجوع. المراحل: تحليل ← تصميم ← برمجة ← اختبار ← تشغيل وصيانة.",
+        ],
+        [
+          "مشاكل الشلال (3)",
+          "التعديلات تربك الفريق، لا رجوع للخطوات، يصعب على العميل وضع كل متطلباته بوضوح.",
+        ],
+        [
+          "نموذج Throwaway ومشكلاته",
+          "نموذج أولي يُقيّم ثم يُرمى ويُعاد البناء. مشاكله: العميل يظنه نهائياً + تجاوزات المطوّر (نظام/لغة غير مناسبة).",
+        ],
+        [
+          "عيوب RAD (4)",
+          "يحتاج فريقاً كبيراً، يتطلب التزاماً عالياً، غير مناسب للأمن العالي، أخطاء السرعة.",
+        ],
+        [
+          "لماذا النماذج التكرارية؟",
+          "البرمجيات تتطور ومتطلبات العميل تتغير أثناء المشروع.",
+        ],
+        [
+          "أنواع النماذج التكرارية (5)",
+          "التزايدي، الحلزوني، المتزامن، تجميع المكونات، الشكلي.",
+        ],
+        [
+          "أنشطة النموذج الحلزوني",
+          "التواصل مع العميل ← التخطيط ← تحليل المخاطر ← الهندسة/البناء ← تقييم العميل.",
+        ],
+        [
+          "النموذج المتزامن",
+          "حلزوني تُزامن فيه أكثر من نشاط (أكثر من مهمة بوقت واحد).",
+        ],
+        [
+          "النموذج الشكلي",
+          "مواصفات رياضية دقيقة للبرنامج (يكشف المشاكل ويصحّحها أسهل).",
+        ],
+        [
+          "إعادة الاستخدام — ما يُعاد (3)",
+          "التطبيقات، المكونات، الأصناف والدوال.",
+        ],
+        [
+          "أسباب إعادة الاستخدام (4)",
+          "تكلفة صيانة عالية، ضعف الأدوات، ضعف الأمان، استهلاك وقت التصميم.",
+        ],
+        [
+          "فوائد إعادة الاستخدام (4)",
+          "الاعتمادية، الأمان، توفير الجهد/الوقت، التطوير السريع.",
+        ],
+        [
+          "إمكانية إعادة الاستخدام (Reusability)",
+          "جزء من الكود يُستخدم مجدداً لإضافة وظائف بتعديلات بسيطة أو بدون تعديلات.",
+        ],
+        [
+          "تصنيف تكلفة البرنامج",
+          "متكررة (العمالة+الصيانة) وغير متكررة (المعدات). الكلية = غير المتكررة + المتكررة.",
+        ],
+        [
+          "أسباب شيخوخة البرنامج (5)",
+          "ندرة الصيانة، تآكل البنية، نقص المرونة، توثيق غير كافٍ، غياب التركيبية.",
+        ],
+        [
+          "أنواع البرمجيات (3)",
+          "خاصة بالعملاء، عامة تُباع في السوق، مضمّنة (Embedded).",
+        ],
+        ["أنواع مشاريع البرمجيات", "تصحيحية (Corrective) وتكيفية (Adaptive)."],
+        [
+          "أسباب تطوير البرمجيات (5)",
+          "تغيير المتطلبات، المراجعة/الإصلاح، تغيير العتاد، تحسين الأداء، تغيير تنسيق البيانات.",
+        ],
+        [
+          "أقسام الإدارة (5)",
+          "إدارة المشروع، المخاطر، الأشخاص، الجودة، التهيئة (Configuration).",
+        ],
+        [
+          "الفرق بين إدارة المشروع البرمجي والهندسي",
+          "البرمجي غير ملموس ويصعب التنبؤ بمشاكله؛ الهندسي ملموس.",
+        ],
+        ["مراحل إدارة المخاطر (3)", "تحديد المخاطر ← تحليلها ← إدارتها."],
+        [
+          "أنواع المخاطر البرمجية (6)",
+          "تقنية، بشرية، تنظيمية، الأدوات، المتطلبات، التقييم.",
+        ],
+        ["ما يحدّد تنظيم الفريق؟", "عدد الأفراد، خبرة الأفراد، نوع المشروع."],
+        [
+          "إدارة الجودة",
+          "ضمان تحقيق المستوى المطلوب، تحديد المعايير والإجراءات وضمان اتباعها، بناء ثقافة جودة.",
+        ],
+        [
+          "إدارة التهيئة (Configuration)",
+          "إدارة تغيّر النظام عبر مخطط موثّق وقاعدة بيانات تسجّل معلومات التغيير.",
+        ],
+        [
+          "تعريف الاختبار",
+          "عملية فحص البرنامج لضمان صحّته وسلامته واكتشاف الأخطاء وضمان الجودة.",
+        ],
+        [
+          "أسباب أخطاء البرمجيات",
+          "أخطاء توصيف/تحليل/تصميم، أخطاء استخدام، عدم توافق البيئة، عدم تحديث البرنامج.",
+        ],
+        [
+          "خطوات الاختبار الأساسية",
+          "التخطيط والتحكم، التحكم، التحليل والتصميم، التنفيذ، التطبيق، تقييم المعايير، إغلاق الأنشطة.",
+        ],
+        [
+          "الصندوق الأبيض مقابل الأسود",
+          "الأبيض: رؤية داخلية/هيكلية للكود (بنيوي). الأسود: رؤية خارجية للوظائف بلا بنية.",
+        ],
+        [
+          "اختبار الانحدار (Regression)",
+          "اختبار عيوب جديدة بعد إصلاح بعض العيوب.",
+        ],
+        [
+          "اختبار الدخان (Smoke)",
+          "يهتم بالوظيفة الرئيسية للنظام ولا يهتم بالوظائف التفصيلية.",
+        ],
+        [
+          "Alpha مقابل Beta",
+          "Alpha: قبول داخلي. Beta: قبول خارجي — كلاهما لتغذية راجعة.",
+        ],
+        [
+          "الفرق بين المنهجية والطريقة",
+          "المنهجية أشمل (منهج متكامل لدورة الحياة)؛ الطريقة تقنية محددة لخطوة.",
+        ],
+      ];
+      const FC = { done: false };
+      function buildCards() {
+        FC.done = true;
+        const w = document.getElementById("fc-wrap");
+        w.innerHTML = "";
+        CARDS.forEach((c) => {
+          const d = document.createElement("div");
+          d.className = "fc";
+          d.onclick = () => d.classList.toggle("flipped");
+          d.innerHTML =
+            '<div class="face q">' +
+            c[0] +
+            '</div><div class="face a">' +
+            c[1] +
+            '</div><div class="hint">اضغط للقلب</div>';
+          w.appendChild(d);
+        });
+        document.getElementById("fc-count").textContent =
+          CARDS.length + " بطاقة";
+      }
+      function fcShuffle() {
+        const w = document.getElementById("fc-wrap");
+        [...w.children]
+          .sort(() => Math.random() - 0.5)
+          .forEach((c) => w.appendChild(c));
+      }
+      function fcFlipAll() {
+        document
+          .querySelectorAll(".fc")
+          .forEach((c) => c.classList.toggle("flipped"));
+      }
+      function fcReset() {
+        document
+          .querySelectorAll(".fc")
+          .forEach((c) => c.classList.remove("flipped"));
+      }
+
+      const QAS = [
+        [
+          "عرّف هندسة البرمجيات وسمات البرمجيات الجيدة.",
+          "الفرع الهندسي لجميع جوانب إنتاج البرمجيات. السمات: قابلية الصيانة، الاعتمادية، الكفاءة، قابلية الاستخدام.",
+        ],
+        [
+          "صنّف البرمجيات (7 أنواع).",
+          "نظامية، زمن-حقيقي، أعمال، هندسية/علمية، ذكاء اصطناعي، ويب، حاسوب شخصي.",
+        ],
+        [
+          "ما الأنظمة الحرجة وأنواعها ومكوّنات أعطالها؟",
+          "أنظمة فشلها يسبب خسائر/أرواح. أنواعها (4): سلامة، أمن، اعتمادية، عمل. أعطالها في (3): عتاد، برنامج، بشري.",
+        ],
+        [
+          "اذكر أبعاد اعتمادية الأنظمة.",
+          "(4): التوافر، الاعتمادية، السلامة، الأمن.",
+        ],
+        [
+          "ما الفرق بين المنهجية والطريقة؟ أيهما الأشمل؟",
+          "المنهجية منهج متكامل يغطي دورة الحياة؛ الطريقة تقنية محددة لخطوة. المنهجية هي الأشمل.",
+        ],
+        [
+          "عدّد نماذج التطوير واشرح مراحل الشلال ومشاكله.",
+          "Build&Fix، Waterfall، Throwaway، RAD، Incremental، Spiral، Concurrent، Component. الشلال: تحليل→تصميم→برمجة→اختبار→صيانة، تسلسلي لا رجوع. مشاكله: التعديلات تربك، لا رجوع، صعب وضوح متطلبات العميل.",
+        ],
+        [
+          "ما أنشطة النموذج الحلزوني؟",
+          "التواصل مع العميل ← التخطيط ← تحليل المخاطر ← الهندسة/البناء ← تقييم العميل.",
+        ],
+        [
+          "اذكر أسباب وعيوب نموذج RAD.",
+          "العيوب: يحتاج فريقاً كبيراً، يتطلب التزاماً عالياً، غير مناسب للأمن العالي، أخطاء السرعة.",
+        ],
+        [
+          "ما إعادة الاستخدام: ما يُعاد، أسبابها، فوائدها؟",
+          "يُعاد (3): التطبيقات، المكونات، الأصناف/الدوال. الأسباب (4): صيانة مكلفة، أدوات ضعيفة، أمان ضعيف، وقت تصميم. الفوائد (4): اعتمادية، أمان، توفير جهد، تطوير سريع.",
+        ],
+        [
+          "صنّف تكلفة البرنامج واذكر المعادلة.",
+          "متكررة (العمالة+الصيانة)، غير متكررة (المعدات). الكلية = غير المتكررة + المتكررة.",
+        ],
+        [
+          "ما أسباب شيخوخة البرنامج (5)؟",
+          "ندرة الصيانة، تآكل البنية، نقص المرونة، توثيق غير كافٍ، غياب التركيبية.",
+        ],
+        [
+          "اذكر أقسام الإدارة وأنواع المخاطر.",
+          "الأقسام (5): المشروع، المخاطر، الأشخاص، الجودة، التهيئة. المخاطر (6): تقنية، بشرية، تنظيمية، أدوات، متطلبات، تقييم.",
+        ],
+        [
+          "ما خطوات الاختبار الأساسية؟",
+          "التخطيط والتحكم، التحكم، التحليل والتصميم، التنفيذ، التطبيق، تقييم المعايير، إغلاق الأنشطة.",
+        ],
+        [
+          "ما الفرق بين الصندوق الأبيض والأسود؟",
+          "الأبيض: اختبار بنيوي/داخلي للكود. الأسود: خارجي للوظائف دون رؤية البنية.",
+        ],
+        [
+          "عدّد أنواع اختبار البرمجيات.",
+          "أبيض، وحدة، ثابت، أسود، تكاملي، وظيفي، أداء، اعتمادية، مخصّص، دخان، نظام، إصدار، Beta، انحدار، Alpha.",
+        ],
+        [
+          "ما الفرق بين اختبار Alpha و Beta؟",
+          "Alpha قبول داخلي، Beta قبول خارجي — كلاهما لبرنامج جاهز للحصول على تغذية راجعة.",
+        ],
+        [
+          "ما الفرق بين إدارة المشروع البرمجي والهندسي؟",
+          "البرمجي غير ملموس ويصعب التنبؤ بمشاكله؛ الهندسي ملموس.",
+        ],
+        [
+          "ما أسباب تطوير البرمجيات (5)؟",
+          "تغيير المتطلبات، المراجعة/الإصلاح، تغيير العتاد، تحسين الأداء، تغيير تنسيق البيانات.",
+        ],
+      ];
+      const QA = { done: false };
+      function buildQA() {
+        QA.done = true;
+        const w = document.getElementById("qa-wrap");
+        w.innerHTML = "";
+        QAS.forEach((q, i) => {
+          const d = document.createElement("div");
+          d.className = "qa";
+          d.innerHTML =
+            '<div class="q" onclick="this.parentElement.classList.toggle(\'open\')">' +
+            (i + 1) +
+            ". " +
+            q[0] +
+            '</div><div class="a">' +
+            q[1] +
+            "</div>";
+          w.appendChild(d);
+        });
+      }
+
+      const QUIZ = [
+        {
+          q: "هندسة البرمجيات تهتم بـ:",
+          o: [
+            "فقط كتابة الكود",
+            "جميع جوانب إنتاج البرمجيات",
+            "تسويق البرمجيات",
+            "صيانة العتاد",
+          ],
+          a: 1,
+        },
+        {
+          q: "نسبة تكلفة الاختبار تقريباً:",
+          o: ["10%", "25%", "40%", "70%"],
+          a: 2,
+        },
+        {
+          q: "من ليس من المشاركين في تطوير البرمجيات؟",
+          o: ["المستخدم", "العميل", "المطوّر", "المسوّق"],
+          a: 3,
+        },
+        {
+          q: "سمة تعني قبول البرنامج للتغيير:",
+          o: ["الاعتمادية", "قابلية الصيانة", "الكفاءة", "التوافر"],
+          a: 1,
+        },
+        { q: "عدد أنواع تصنيف البرمجيات:", o: ["5", "6", "7", "8"], a: 2 },
+        {
+          q: "الأنظمة التي يسبب فشلها إصابات تُصنّف حرجة من حيث:",
+          o: ["الأمن", "السلامة", "الاعتمادية", "العمل"],
+          a: 1,
+        },
+        { q: "عدد أنواع الأنظمة الحرجة:", o: ["2", "3", "4", "5"], a: 2 },
+        {
+          q: "أين تحدث أعطال الأنظمة الحرجة؟",
+          o: [
+            "العتاد فقط",
+            "البرنامج فقط",
+            "العتاد والبرنامج والبشري",
+            "الشبكة فقط",
+          ],
+          a: 2,
+        },
+        { q: "عدد أبعاد اعتمادية الأنظمة:", o: ["2", "3", "4", "5"], a: 2 },
+        {
+          q: "السلامة كأحد أبعاد الاعتمادية تعني:",
+          o: [
+            "توفير الخدمة وقت الطلب",
+            "احتمال إحداث ضرر للإنسان",
+            "معالجة الاختراق",
+            "عدم استهلاك موارد",
+          ],
+          a: 1,
+        },
+        {
+          q: "الأداء مقابل الاعتمادية:",
+          o: [
+            "يزيدان معاً دائماً",
+            "زيادة الاعتمادية تقلّل الأداء",
+            "لا علاقة",
+            "الأداء يعني الاستهلاك",
+          ],
+          a: 1,
+        },
+        {
+          q: "أول نموذج معتمد (1970) والتسلسلي:",
+          o: ["الحلزوني", "الشلال", "التزايدي", "RAD"],
+          a: 1,
+        },
+        { q: "عدد مراحل الشلال:", o: ["3", "4", "5", "6"], a: 2 },
+        {
+          q: "أول مرحلة في الشلال:",
+          o: ["التصميم", "التحليل", "البرمجة", "الاختبار"],
+          a: 1,
+        },
+        {
+          q: "المشكلة الرئيسية للشلال:",
+          o: [
+            "يحتاج فريقاً كبيراً",
+            "لا يمكن الرجوع للسابقة",
+            "يركّز على المخاطر",
+            "يستخدم رياضيات",
+          ],
+          a: 1,
+        },
+        {
+          q: "النموذج الذي يبني نموذجاً أولياً ثم يرميه:",
+          o: ["Incremental", "Throwaway", "Spiral", "Concurrent"],
+          a: 1,
+        },
+        {
+          q: "من عيوب Throwaway:",
+          o: [
+            "يحتاج وقتاً طويلاً",
+            "العميل يظنه نسخة نهائية",
+            "يركّز على المخاطر",
+            "يستخدم رياضيات",
+          ],
+          a: 1,
+        },
+        {
+          q: "RAD غير مناسب لـ:",
+          o: [
+            "المشاريع الصغيرة",
+            "مشاريع الأمن العالي",
+            "الوقت الضيق",
+            "الفرق الكبيرة",
+          ],
+          a: 1,
+        },
+        {
+          q: "أي نشطة في الحلزوني؟",
+          o: ["تحليل المخاطر", "لا رجوع", "بناء فوري", "إعادة استخدام فقط"],
+          a: 0,
+        },
+        {
+          q: "النموذج بأنشطة متزامنة:",
+          o: ["الشلال", "Build&Fix", "Concurrent", "Throwaway"],
+          a: 2,
+        },
+        {
+          q: "النموذج بمواصفات رياضية:",
+          o: ["Formal", "RAD", "Waterfall", "Component"],
+          a: 0,
+        },
+        {
+          q: "المنهجية مقارنة بالطريقة:",
+          o: ["أضيق", "الأشمل", "متماثلة", "لا علاقة"],
+          a: 1,
+        },
+        {
+          q: "أي مما يلي يُعاد استخدامه؟",
+          o: ["التطبيقات", "المكونات", "الأصناف والدوال", "كل ما سبق"],
+          a: 3,
+        },
+        { q: "عدد فوائد إعادة الاستخدام:", o: ["2", "3", "4", "5"], a: 2 },
+        {
+          q: "التكلفة الكلية = :",
+          o: [
+            "المتكررة فقط",
+            "غير المتكررة + المتكررة",
+            "التطوير × الوقت",
+            "المعدات فقط",
+          ],
+          a: 1,
+        },
+        {
+          q: "أجور العمل والصيانة تكلفة:",
+          o: ["غير متكررة", "متكررة (Recurring)", "رأسمالية", "ثابتة"],
+          a: 1,
+        },
+        {
+          q: "ندرة الصيانة وتآكل البنية من أسباب:",
+          o: ["شيخوخة البرنامج", "الجودة", "الأمان", "إعادة الاستخدام"],
+          a: 0,
+        },
+        { q: "عدد أسباب شيخوخة البرنامج:", o: ["3", "4", "5", "6"], a: 2 },
+        {
+          q: "عدد أقسام الإدارة في هندسة البرمجيات:",
+          o: ["3", "4", "5", "6"],
+          a: 2,
+        },
+        {
+          q: "أقسام الإدارة تشمل:",
+          o: [
+            "المشروع والمخاطر فقط",
+            "المشروع والمخاطر والأشخاص والجودة والتهيئة",
+            "التسويق",
+            "التصميم",
+          ],
+          a: 1,
+        },
+        { q: "عدد أنواع المخاطر البرمجية:", o: ["3", "4", "5", "6"], a: 3 },
+        {
+          q: "المخاطر المرتبطة بالأفراد:",
+          o: ["تقنية", "بشرية", "تنظيمية", "تشغيلية"],
+          a: 1,
+        },
+        {
+          q: "المخاطر من تغيّر متطلبات العميل:",
+          o: ["تقنية", "بشرية", "متطلبات", "تقييم"],
+          a: 2,
+        },
+        {
+          q: "مشروع برمجي يختلف عن الهندسي بأنه:",
+          o: [
+            "ملموس",
+            "سهل التنبؤ",
+            "غير ملموس ويصعب التنبؤ بمشاكله",
+            "أرخص دائماً",
+          ],
+          a: 2,
+        },
+        {
+          q: "إدارة تغيّر النظام عبر مخطط موثّق:",
+          o: [
+            "إدارة المخاطر",
+            "إدارة التهيئة",
+            "إدارة الأشخاص",
+            "إدارة الجودة",
+          ],
+          a: 1,
+        },
+        {
+          q: "اختبار يفحص الوظائف دون البنية الداخلية:",
+          o: ["الصندوق الأبيض", "الصندوق الأسود", "اختبار الدخان", "Alpha"],
+          a: 1,
+        },
+        {
+          q: "الصندوق الأبيض:",
+          o: [
+            "يرى البنية الداخلية للكود",
+            "يرى الوظائف فقط",
+            "لا يرى الكود",
+            "اختبار قبول",
+          ],
+          a: 0,
+        },
+        { q: "عدد خطوات الاختبار الأساسية:", o: ["5", "6", "7", "8"], a: 2 },
+        {
+          q: "اختبار يكتشف أخطاء جديدة بعد إصلاح أخرى:",
+          o: ["انحدار (Regression)", "Alpha", "الدخان", "النظام"],
+          a: 0,
+        },
+        {
+          q: "اختبار يهتم بالوظيفة الرئيسية فقط:",
+          o: ["الدخان (Smoke)", "التكاملي", "Beta", "الوظيفي"],
+          a: 0,
+        },
+        {
+          q: "Alpha مقابل Beta:",
+          o: [
+            "كلاهما خارجي",
+            "Alpha داخلي و Beta خارجي",
+            "Alpha خارجي و Beta داخلي",
+            "كلاهما داخلي",
+          ],
+          a: 1,
+        },
+        {
+          q: "سبب من أسباب أخطاء البرمجيات:",
+          o: [
+            "كثرة المستخدمين",
+            "عدم توافق بيئة التشغيل",
+            "سرعة الإنترنت",
+            "حجم الشاشة",
+          ],
+          a: 1,
+        },
+      ];
+      let QI = 0,
+        QSCORE = 0,
+        QANS = false;
+      function initQuiz() {
+        QI = 0;
+        QSCORE = 0;
+        renderQ();
+      }
+      function renderQ() {
+        const box = document.getElementById("quiz-box");
+        if (QI >= QUIZ.length) {
+          const pct = Math.round((QSCORE / QUIZ.length) * 100);
+          let msg =
+            pct >= 90
+              ? "🏆 ممتاز! جاهز للـ27/30 💪"
+              : pct >= 70
+                ? "👍 جيد، راجع الأخطاء وأعد المحاولة"
+                : "📖 راجع المذاكرة ثم أعد الاختبار";
+          let pred = Math.round((pct / 100) * 30);
+          box.innerHTML =
+            '<div style="text-align:center;padding:20px"><div class="big-score" style="color:' +
+            (pct >= 70 ? "var(--green)" : "var(--red)") +
+            '">' +
+            QSCORE +
+            "/" +
+            QUIZ.length +
+            '</div><p style="font-size:1.2rem;margin:10px">' +
+            pct +
+            "% — تقديرياً " +
+            pred +
+            '/30</p><p style="color:var(--acc2);font-size:1.1rem">' +
+            msg +
+            '</p><div class="fc-controls" style="margin-top:16px"><button onclick="initQuiz()">🔁 إعادة</button><button onclick="document.querySelectorAll(\'nav button\')[0].click()">📚 راجع المذاكرة</button></div></div>';
+          return;
+        }
+        const item = QUIZ[QI];
+        QANS = false;
+        box.innerHTML =
+          '<div class="progress"><div style="width:' +
+          (QI / QUIZ.length) * 100 +
+          '%"></div></div><div style="color:var(--mut);font-size:.8rem">سؤال ' +
+          (QI + 1) +
+          " من " +
+          QUIZ.length +
+          " • النقاط: " +
+          QSCORE +
+          '</div><div id="quiz-q"><div class="qq">' +
+          item.q +
+          '</div><div id="opts"></div></div>';
+        const ow = document.getElementById("opts");
+        item.o.forEach((opt, i) => {
+          const b = document.createElement("div");
+          b.className = "opt";
+          b.textContent = opt;
+          b.onclick = () => answer(i, item.a);
+          ow.appendChild(b);
+        });
+      }
+      function answer(i, correct) {
+        if (QANS) return;
+        QANS = true;
+        document.querySelectorAll("#opts .opt").forEach((b, k) => {
+          if (k === correct) b.classList.add("correct");
+          if (k === i && i !== correct) b.classList.add("wrong");
+          b.style.pointerEvents = "none";
+        });
+        if (i === correct) QSCORE++;
+        setTimeout(() => {
+          QI++;
+          renderQ();
+        }, 800);
+      }
+    </script>
+  </body>
+</html>
