@@ -37,7 +37,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .topbar-in .brand{display:flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--acc);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1}
 .topbar-in .brand .lm{width:24px;height:24px;display:grid;place-items:center;background:var(--acc-g);border:1px solid var(--acc);border-radius:6px;font-size:.7rem;flex-shrink:0}
 .topbar-in .top-actions{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;flex-shrink:0}
-.top-btn{height:32px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;background:var(--sf);border:1px solid var(--ln);border-radius:8px;color:var(--acc);cursor:pointer;font-family:var(--fa);font-size:.78rem;font-weight:700;transition:all var(--dur) var(--ease);user-select:none;flex-shrink:0;white-space:nowrap}
+.top-btn{height:32px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;background:var(--sf);border:1px solid var(--ln);border-radius:8px;color:var(--acc);cursor:pointer;font-family:var(--fa);font-size:.78rem;font-weight:700;transition:all var(--dur) var(--ease);user-select:none;flex-shrink:0;white-space:nowrap;text-decoration:none}
 .top-btn:hover{border-color:var(--acc);background:var(--acc-g)}
 .top-btn.icon-only{width:32px;padding:0;font-size:.95rem}
 
@@ -187,7 +187,7 @@ tr:hover td{background:var(--bg-s)}
 .qcard-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .qcard-badge{font-family:var(--fm);font-size:.68rem;font-weight:700;color:var(--acc);background:var(--acc-g);border:1px solid color-mix(in srgb,var(--acc) 30%,transparent);border-radius:6px;padding:3px 9px}
 .qcard-actions{display:flex;align-items:center;gap:6px}
-.qcard-action-btn{padding:4px 10px;background:var(--sf2);border:1px solid var(--ln);border-radius:6px;color:var(--acc);font-family:var(--fa);font-size:.72rem;font-weight:700;cursor:pointer;transition:all var(--dur) var(--ease);display:inline-flex;align-items:center;gap:4px}
+.qcard-action-btn{padding:4px 10px;background:var(--sf2);border:1px solid var(--ln);border-radius:6px;color:var(--acc);font-family:var(--fa);font-size:.72rem;font-weight:700;cursor:pointer;transition:all var(--dur) var(--ease);display:inline-flex;align-items:center;gap:4px;text-decoration:none}
 .qcard-action-btn:hover{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 
 .qcard-text{font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.6}
@@ -199,21 +199,22 @@ tr:hover td{background:var(--bg-s)}
 .qopt.wrong{background:var(--err-bg);border-color:var(--err);color:var(--err);font-weight:700}
 .qopt.dis{pointer-events:none}
 
+/* Concise inline explanation box with actions */
 .exp-box{margin-top:14px;padding:14px 16px;background:var(--ex-bg);border:1px solid color-mix(in srgb,var(--acc) 45%,transparent);border-radius:var(--r-m);font-size:.88rem;line-height:1.75;color:var(--ink);display:none;animation:rise .25s var(--ease)}
 .exp-box.show{display:block}
-.exp-box b{color:var(--acc-b);display:flex;align-items:center;gap:6px;margin-bottom:4px}
-.exp-details-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
-.exp-detail-row{padding:8px 12px;background:var(--sf);border-radius:var(--r-s);border-right:3px solid var(--acc)}
-.exp-detail-row.wrong-analysis{border-right-color:var(--err)}
-.exp-detail-row.tip{border-right-color:var(--ok)}
-.exp-detail-row.slide-link{border-right-color:var(--acc-b);cursor:pointer}
-.exp-detail-row.slide-link:hover{background:var(--acc-g)}
+.exp-brief{font-size:.9rem;color:var(--ink);margin-bottom:10px;line-height:1.7}
+.exp-brief b{color:var(--acc-b)}
+.exp-actions-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid color-mix(in srgb,var(--acc) 25%,transparent);padding-top:10px;margin-top:8px}
+.exp-action-btn{padding:6px 14px;background:var(--sf);border:1px solid var(--ln);border-radius:999px;color:var(--acc-b);font-family:var(--fa);font-size:.76rem;font-weight:700;cursor:pointer;transition:all var(--dur) var(--ease);display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+.exp-action-btn:hover{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.exp-action-btn.new-tab{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+.exp-action-btn.new-tab:hover{background:var(--ok);color:var(--bg)}
 
 .model-controls-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0;flex-wrap:wrap;padding:12px 16px;background:var(--sf);border:1px solid var(--ln);border-radius:var(--r-m)}
 .model-stat{font-family:var(--fm);font-size:.84rem;color:var(--ink-m);font-weight:700}
 .model-stat span{color:var(--acc-b)}
 .model-actions{display:flex;gap:8px;flex-wrap:wrap}
-.model-btn{padding:8px 14px;background:var(--sf2);border:1px solid var(--ln);border-radius:999px;color:var(--acc);font-family:var(--fa);font-size:.78rem;font-weight:700;cursor:pointer;transition:all var(--dur) var(--ease)}
+.model-btn{padding:8px 14px;background:var(--sf2);border:1px solid var(--ln);border-radius:999px;color:var(--acc);font-family:var(--fa);font-size:.78rem;font-weight:700;cursor:pointer;transition:all var(--dur) var(--ease);text-decoration:none;display:inline-flex;align-items:center;gap:4px}
 .model-btn:hover{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 
 /* Explanation Modal View */
@@ -224,6 +225,13 @@ tr:hover td{background:var(--bg-s)}
 .exp-modal-title{font-family:var(--fa);font-size:1.15rem;font-weight:800;color:var(--acc-b)}
 .exp-modal-close{width:34px;height:34px;border-radius:8px;background:var(--sf2);border:1px solid var(--ln);color:var(--acc);font-size:1.2rem;cursor:pointer;display:grid;place-items:center;transition:all var(--dur) var(--ease)}
 .exp-modal-close:hover{background:var(--err-bg);color:var(--err);border-color:var(--err)}
+
+.exp-details-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+.exp-detail-row{padding:10px 14px;background:var(--sf2);border-radius:var(--r-s);border-right:3px solid var(--acc);line-height:1.75}
+.exp-detail-row.wrong-analysis{border-right-color:var(--err)}
+.exp-detail-row.tip{border-right-color:var(--ok)}
+.exp-detail-row.slide-link{border-right-color:var(--acc-b);cursor:pointer;text-decoration:none;display:block;color:var(--ink)}
+.exp-detail-row.slide-link:hover{background:var(--acc-g);color:var(--acc-b)}
 
 /* Bottom Navigation */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:color-mix(in srgb,var(--sf) 94%,transparent);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);border-top:1px solid var(--ln);padding:6px;padding-bottom:calc(6px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(8,1fr);gap:2px;max-width:760px;margin:0 auto;border-radius:var(--r-l) var(--r-l) 0 0}
@@ -856,8 +864,6 @@ function renderModelQuestions(modelKey){
     let sId = q.slide_ref_id || "L1-S1";
     let sTitle = q.slide_ref_title || "السلايدات الكاملة";
     let rationale = q.exp_rationale || q.explanation || "إجابة معتمدة وفق سلايدات د. عبدالماجد.";
-    let distractors = q.exp_distractors || "الخيارات الأخرى غير مطابقة للتعريف الأكاديمي.";
-    let examTip = q.exp_exam_tip || "احرص على التركيز على المصطلحات الدقيقة في أسئلة الدكتور.";
 
     if (modelKey === "m2" && q.options_ar) {
       opts = q.options_ar.map((ar, i) => `${ar} (${q.options_en ? q.options_en[i] : ''})`);
@@ -873,7 +879,7 @@ function renderModelQuestions(modelKey){
       <div class="qcard-head">
         <span class="qcard-badge">سؤال #${qNum} ${q.chapter ? '· ' + q.chapter : ''}</span>
         <div class="qcard-actions">
-          <button class="qcard-action-btn" onclick="jumpToSlideDirect('${sId}')" title="الانتقال المباشر لشريحة المفهوم بالسلايدات">📖 سلايد ${sId}</button>
+          <a class="qcard-action-btn" href="index.html?tab=slides&slide=${sId}" target="_blank" title="فتح الشريحة في صفحة جديدة">📑 سلايد ${sId} ↗</a>
           <button class="qcard-action-btn" onclick="openExpModal('${modelKey}', ${qNum})" title="عرض الشرح الكامل في نافذة مستقلة">🔍 الشرح الكامل</button>
         </div>
       </div>
@@ -885,20 +891,12 @@ function renderModelQuestions(modelKey){
         ${optsH}
       </div>
       <div class="exp-box ${S.showAllExps ? 'show' : ''}" id="exp-${modelKey}-${qNum}">
-        <b>💡 الشرح والتبرير العلمي المعتمد:</b>
-        <div class="exp-details-grid">
-          <div class="exp-detail-row">
-            <b>🎯 التعليل:</b> ${esc(rationale)}
-          </div>
-          <div class="exp-detail-row wrong-analysis">
-            <b>🚫 تحليل الخيارات:</b> ${esc(distractors)}
-          </div>
-          <div class="exp-detail-row tip">
-            <b>💡 نصيحة الاختبار:</b> ${esc(examTip)}
-          </div>
-          <div class="exp-detail-row slide-link" onclick="jumpToSlideDirect('${sId}')">
-            <b>📖 المرجع في السلايدات:</b> اضغط هنا لفتح سلايد [${sId} · ${esc(sTitle)}] مباشرة
-          </div>
+        <div class="exp-brief">
+          <b>🎯 تعليل سريع:</b> ${esc(rationale)}
+        </div>
+        <div class="exp-actions-row">
+          <button class="exp-action-btn" onclick="openExpModal('${modelKey}', ${qNum})">🔍 فتح الشرح المفصل والتفنيد كاملاً</button>
+          <a class="exp-action-btn new-tab" href="index.html?tab=slides&slide=${sId}" target="_blank">📑 فتح شريحة [${sId}] في صفحة جديدة ↗</a>
         </div>
       </div>
     </div>
@@ -1033,9 +1031,9 @@ function openExpModal(mKey, qNum){
         <b>💡 تلميح الاختبار ونمط د. عبدالماجد:</b><br/>
         ${esc(q.exp_exam_tip || 'احرص على التركيز على المصطلحات الدقيقة والقوائم في الاختبار.')}
       </div>
-      <div class="exp-detail-row slide-link" onclick="closeExpModal(); jumpToSlideDirect('${sId}')">
-        <b>📖 المرجع في السلايدات:</b> انقر هنا لفتح الشريحة مباشرة [${sId} · ${esc(sTitle)}]
-      </div>
+      <a class="exp-detail-row slide-link" href="index.html?tab=slides&slide=${sId}" target="_blank">
+        <b>📖 المرجع في السلايدات:</b> انقر هنا لفتح الشريحة في صفحة جديدة ↗ [${sId} · ${esc(sTitle)}]
+      </a>
     </div>
   `;
 
@@ -1372,7 +1370,7 @@ function toast(msg){
   toastTimer = setTimeout(() => t.classList.remove("show"), 2000);
 }
 
-// Initialize App
+// Initialize App & Handle URL Query Params (For Opening in New Tab)
 buildSlides();
 renderModelQuestions(S.activeModel);
 buildSummary();
@@ -1381,7 +1379,22 @@ buildCompare();
 buildQA();
 renderQuiz();
 buildCards();
-switchTab(S.activeTab);
+
+const urlParams = new URLSearchParams(window.location.search);
+const targetTab = urlParams.get('tab');
+const targetSlide = urlParams.get('slide') || window.location.hash.replace('#', '');
+
+if (targetTab) {
+  switchTab(targetTab);
+} else {
+  switchTab(S.activeTab);
+}
+
+if (targetSlide) {
+  setTimeout(() => {
+    jumpToSlideDirect(targetSlide);
+  }, 400);
+}
 </script>
 </body>
 </html>
