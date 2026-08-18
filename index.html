@@ -32,38 +32,53 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .topbar,main,.tab-bar,.bottom-nav{position:relative;z-index:2}
 
 /* ==========================================================================
-   Advanced Language & Translation Preference Engine (TOC-Style)
+   Advanced Language & Translation Preference Engine (High-Contrast Typography)
    ========================================================================== */
-.ar-line, .q-text-ar, .ot-ar, .q-exp-ar, .s-ar, .def-ar, .ar-txt { display: block; }
-.en-line, .q-text-en, .ot-en, .q-exp-en, .s-en, .def-en, .en-txt { display: block; }
+.ar-line, .q-text-ar, .ot-ar, .q-exp-ar, .s-ar, .def-ar, .ar-txt { display: block; font-family: var(--fa); }
+.en-line, .q-text-en, .ot-en, .q-exp-en, .s-en, .def-en, .en-txt { display: block; font-family: var(--fd); direction: ltr; text-align: left; }
 .ar-txt, .en-txt, .term, .term-en, .en { display: inline; }
 
 /* 1. Arabic First + English */
-html.lang-ar-first .ar-line, html.lang-ar-first .q-text-ar, html.lang-ar-first .ot-ar, html.lang-ar-first .q-exp-ar, html.lang-ar-first .s-ar, html.lang-ar-first .def-ar { display: block; order: 1; }
-html.lang-ar-first.sec-always .en-line, html.lang-ar-first.sec-always .q-text-en, html.lang-ar-first.sec-always .ot-en, html.lang-ar-first.sec-always .q-exp-en, html.lang-ar-first.sec-always .def-en { display: block; order: 2; color: var(--ink-m); font-size: .86em; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
+html.lang-ar-first .ar-line, html.lang-ar-first .q-text-ar, html.lang-ar-first .ot-ar, html.lang-ar-first .q-exp-ar, html.lang-ar-first .s-ar, html.lang-ar-first .def-ar { display: block; order: 1; color: var(--ink); }
+html.lang-ar-first .slide-title .ar-line { font-size: 1.05rem; font-weight: 800; color: var(--acc-b); }
+html.lang-ar-first .slide-title .en-line { font-size: .84rem; font-weight: 500; color: var(--ink-m); }
+html.lang-ar-first .qcard-text .q-text-ar { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+html.lang-ar-first .qcard-text .q-text-en { font-size: .88rem; font-weight: 500; color: var(--ink-m); }
+html.lang-ar-first.sec-always .en-line, html.lang-ar-first.sec-always .q-text-en, html.lang-ar-first.sec-always .ot-en, html.lang-ar-first.sec-always .q-exp-en, html.lang-ar-first.sec-always .def-en { display: block; order: 2; color: var(--ink-m); font-size: .92em; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
 html.lang-ar-first.sec-btn .en-line, html.lang-ar-first.sec-btn .q-text-en, html.lang-ar-first.sec-btn .ot-en, html.lang-ar-first.sec-btn .q-exp-en, html.lang-ar-first.sec-btn .def-en { display: none; }
-html.lang-ar-first.sec-btn .en-line.show, html.lang-ar-first.sec-btn .q-text-en.show, html.lang-ar-first.sec-btn .ot-en.show, html.lang-ar-first.sec-btn .q-exp-en.show, html.lang-ar-first.sec-btn .def-en.show { display: block; order: 2; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
+html.lang-ar-first.sec-btn .en-line.show, html.lang-ar-first.sec-btn .q-text-en.show, html.lang-ar-first.sec-btn .ot-en.show, html.lang-ar-first.sec-btn .q-exp-en.show, html.lang-ar-first.sec-btn .def-en.show { display: block; order: 2; color: var(--ink-m); font-size: .92em; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
 
-/* 2. English First + Arabic */
-html.lang-en-first .en-line, html.lang-en-first .q-text-en, html.lang-en-first .ot-en, html.lang-en-first .q-exp-en, html.lang-en-first .s-en, html.lang-en-first .def-en { display: block; order: 1; }
+/* 2. English First + Arabic (English is FULL SIZE & HIGH CONTRAST) */
+html.lang-en-first .en-line, html.lang-en-first .q-text-en, html.lang-en-first .ot-en, html.lang-en-first .q-exp-en, html.lang-en-first .s-en, html.lang-en-first .def-en { display: block; order: 1; color: var(--ink); font-size: 1rem; font-weight: 600; line-height: 1.7; }
+html.lang-en-first .slide-title .en-line { font-size: 1.05rem; font-weight: 800; color: var(--acc-b); }
+html.lang-en-first .slide-title .ar-line { font-size: .84rem; font-weight: 500; color: var(--ink-m); }
+html.lang-en-first .qcard-text .q-text-en { font-size: 1.08rem; font-weight: 700; color: var(--ink); }
+html.lang-en-first .qcard-text .q-text-ar { font-size: .88rem; font-weight: 500; color: var(--ink-m); }
+html.lang-en-first .qopt .ot-en { font-size: .94rem; font-weight: 600; color: var(--ink); }
+html.lang-en-first .qopt .ot-ar { font-size: .84rem; color: var(--ink-m); }
 html.lang-en-first.sec-always .ar-line, html.lang-en-first.sec-always .q-text-ar, html.lang-en-first.sec-always .ot-ar, html.lang-en-first.sec-always .q-exp-ar, html.lang-en-first.sec-always .def-ar { display: block; order: 2; color: var(--ink-m); font-size: .9em; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
 html.lang-en-first.sec-btn .ar-line, html.lang-en-first.sec-btn .q-text-ar, html.lang-en-first.sec-btn .ot-ar, html.lang-en-first.sec-btn .q-exp-ar, html.lang-en-first.sec-btn .def-ar { display: none; }
-html.lang-en-first.sec-btn .ar-line.show, html.lang-en-first.sec-btn .q-text-ar.show, html.lang-en-first.sec-btn .ot-ar.show, html.lang-en-first.sec-btn .q-exp-ar.show, html.lang-en-first.sec-btn .def-ar.show { display: block; order: 2; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
+html.lang-en-first.sec-btn .ar-line.show, html.lang-en-first.sec-btn .q-text-ar.show, html.lang-en-first.sec-btn .ot-ar.show, html.lang-en-first.sec-btn .q-exp-ar.show, html.lang-en-first.sec-btn .def-ar.show { display: block; order: 2; color: var(--ink-m); font-size: .9em; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
 
 /* 3. Arabic with English Terms (Mix) */
-html.lang-ar-mix .ar-line, html.lang-ar-mix .q-text-ar, html.lang-ar-mix .ot-ar, html.lang-ar-mix .q-exp-ar, html.lang-ar-mix .def-ar { display: block; }
+html.lang-ar-mix .ar-line, html.lang-ar-mix .q-text-ar, html.lang-ar-mix .ot-ar, html.lang-ar-mix .q-exp-ar, html.lang-ar-mix .def-ar { display: block; color: var(--ink); }
 html.lang-ar-mix .en-line, html.lang-ar-mix .q-text-en, html.lang-ar-mix .ot-en { display: none; }
-html.lang-ar-mix .en-line.show, html.lang-ar-mix .q-text-en.show, html.lang-ar-mix .ot-en.show, html.lang-ar-mix .def-en.show { display: block; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
-html.lang-ar-mix .term-en, html.lang-ar-mix .en { display: inline; color: var(--acc); font-family: var(--fd); font-weight: 600; margin-inline-start: 4px; }
+html.lang-ar-mix .en-line.show, html.lang-ar-mix .q-text-en.show, html.lang-ar-mix .ot-en.show, html.lang-ar-mix .def-en.show { display: block; color: var(--ink-m); font-size: .9em; border-top: 1px dashed var(--ln-s); margin-top: 4px; padding-top: 4px; }
+html.lang-ar-mix .term-en, html.lang-ar-mix .en { display: inline; color: var(--acc); font-family: var(--fd); font-weight: 700; margin-inline-start: 4px; font-size: 1em; }
 
-/* 4. English Only */
+/* 4. English Only (Full Scale, High Contrast, Bold) */
 html.lang-en-only .ar-line, html.lang-en-only .q-text-ar, html.lang-en-only .ot-ar, html.lang-en-only .q-exp-ar, html.lang-en-only .def-ar, html.lang-en-only .def-term-ar, html.lang-en-only main .ar-txt { display: none !important; }
-html.lang-en-only .en-line, html.lang-en-only .q-text-en, html.lang-en-only .ot-en, html.lang-en-only .q-exp-en, html.lang-en-only .def-en, html.lang-en-only .def-term-en, html.lang-en-only main .en-txt { display: block !important; }
-html.lang-en-only .en-txt, html.lang-en-only .term-en, html.lang-en-only .en { display: inline !important; }
+html.lang-en-only .en-line, html.lang-en-only .q-text-en, html.lang-en-only .ot-en, html.lang-en-only .q-exp-en, html.lang-en-only .def-en, html.lang-en-only .def-term-en, html.lang-en-only main .en-txt { display: block !important; color: var(--ink) !important; font-family: var(--fd); font-size: .96rem; line-height: 1.8; }
+html.lang-en-only .qcard-text .q-text-en { font-size: 1.08rem !important; font-weight: 700 !important; color: var(--ink) !important; }
+html.lang-en-only .qopt .ot-en { font-size: .94rem !important; font-weight: 600 !important; color: var(--ink) !important; }
+html.lang-en-only .slide-title .en-line { font-size: 1.05rem !important; font-weight: 800 !important; color: var(--acc-b) !important; }
+html.lang-en-only .def-term-en { font-size: 1.05rem !important; font-weight: 800 !important; color: var(--acc-b) !important; }
+html.lang-en-only .def-en { font-size: .92rem !important; color: var(--ink) !important; }
+html.lang-en-only .en-txt, html.lang-en-only .term-en, html.lang-en-only .en { display: inline !important; color: inherit; }
 
 /* 5. Arabic Only */
 html.lang-ar-only .en-line, html.lang-ar-only .q-text-en, html.lang-ar-only .ot-en, html.lang-ar-only .q-exp-en, html.lang-ar-only .def-en, html.lang-ar-only .def-term-en, html.lang-ar-only main .en-txt, html.lang-ar-only .term-en { display: none !important; }
-html.lang-ar-only .ar-line, html.lang-ar-only .q-text-ar, html.lang-ar-only .ot-ar, html.lang-ar-only .q-exp-ar, html.lang-ar-only .def-ar, html.lang-ar-only .def-term-ar, html.lang-ar-only main .ar-txt { display: block !important; }
+html.lang-ar-only .ar-line, html.lang-ar-only .q-text-ar, html.lang-ar-only .ot-ar, html.lang-ar-only .q-exp-ar, html.lang-ar-only .def-ar, html.lang-ar-only .def-term-ar, html.lang-ar-only main .ar-txt { display: block !important; color: var(--ink) !important; }
 html.lang-ar-only .ar-txt, html.lang-ar-only .term { display: inline !important; }
 
 /* Dedicated Translation Toggle Button (.btn-toggle-ar) */
@@ -515,8 +530,8 @@ footer{padding:36px 0 24px;text-align:center;color:var(--ink-f);font-size:.76rem
   <!-- 1. SLIDES TAB -->
   <section class="tab-panel active" id="panel-slides">
     <div class="intro">
-      <h1><span class="ar-txt">سلايدات هندسة البرمجيات — <span class="ac">د. عبدالماجد الخليدي</span></span><span class="en-line" style="font-size:.76rem;color:var(--ink-f);margin-top:2px">Software Engineering Slides · Dr. Abdulmajid Al-Khulaidi</span></h1>
-      <p><span class="ar-txt">نص السلايدات كاملًا وتفصيلياً لكافة محاضرات النصفي (L1 إلى L6) مع تمييز النقاط المرشحة للاختبار.</span><span class="en-line" style="font-size:.76rem;color:var(--ink-f)">Complete and comprehensive slides for Midterm lectures (L1-L6) with exam highlights.</span></p>
+      <h1><span class="ar-txt">سلايدات هندسة البرمجيات — <span class="ac">د. عبدالماجد الخليدي</span></span><span class="en-line en-sub">Software Engineering Slides · Dr. Abdulmajid Al-Khulaidi</span></h1>
+      <p><span class="ar-txt">نص السلايدات كاملًا وتفصيلياً لكافة محاضرات النصفي (L1 إلى L6) مع تمييز النقاط المرشحة للاختبار.</span><span class="en-line en-sub">Complete and comprehensive slides for Midterm lectures (L1-L6) with exam highlights.</span></p>
     </div>
     
     <div class="subnav-bar">
@@ -536,8 +551,8 @@ footer{padding:36px 0 24px;text-align:center;color:var(--ink-f);font-size:.76rem
   <!-- 2. EXAM MODELS TAB (WITH 3 MASTER MODELS) -->
   <section class="tab-panel" id="panel-models">
     <div class="intro">
-      <h1><span class="ar-txt">بنك النماذج والاختبارات الشامل — <span class="ac">مع شروحات تفصيلية لكل سؤال</span></span><span class="en-line" style="font-size:.76rem;color:var(--ink-f);margin-top:2px">Comprehensive Exam Bank with In-Depth Explanations</span></h1>
-      <p><span class="ar-txt">نماذج الامتحانات الرسمية والمجمعة مع التبرير العلمي والشرح الفوري لكل خيار وتثبيت المعلومة.</span><span class="en-line" style="font-size:.76rem;color:var(--ink-f)">Official and compiled exam papers with full pedagogical rationales and distractor breakdowns.</span></p>
+      <h1><span class="ar-txt">بنك النماذج والاختبارات الشامل — <span class="ac">مع شروحات تفصيلية لكل سؤال</span></span><span class="en-line en-sub">Comprehensive Exam Bank with In-Depth Explanations</span></h1>
+      <p><span class="ar-txt">نماذج الامتحانات الرسمية والمجمعة مع التبرير العلمي والشرح الفوري لكل خيار وتثبيت المعلومة.</span><span class="en-line en-sub">Official and compiled exam papers with full pedagogical rationales and distractor breakdowns.</span></p>
     </div>
 
     <div class="model-nav-wrap">
@@ -590,8 +605,8 @@ footer{padding:36px 0 24px;text-align:center;color:var(--ink-f);font-size:.76rem
   <!-- 4. DEFINITIONS TAB -->
   <section class="tab-panel" id="panel-defs">
     <div class="intro">
-      <h1><span class="ar-txt">بنك التعاريف والمصطلحات — <span class="ac">المرجع السريع</span></span><span class="en-line" style="font-size:.76rem;color:var(--ink-f);margin-top:2px">Terminology & Definitions Bank</span></h1>
-      <p><span class="ar-txt">قاموس تفاعلي مصنف وشامل لكافة مصطلحات هندسة البرمجيات باللغتين العربية والإنجليزية مع خاصية البحث والفلترة.</span><span class="en-line" style="font-size:.76rem;color:var(--ink-f)">Interactive bilingual dictionary for all core software engineering terms with search and tags filtering.</span></p>
+      <h1><span class="ar-txt">بنك التعاريف والمصطلحات — <span class="ac">المرجع السريع</span></span><span class="en-line en-sub">Terminology & Definitions Bank</span></h1>
+      <p><span class="ar-txt">قاموس تفاعلي مصنف وشامل لكافة مصطلحات هندسة البرمجيات باللغتين العربية والإنجليزية مع خاصية البحث والفلترة.</span><span class="en-line en-sub">Interactive bilingual dictionary for all core software engineering terms with search and tags filtering.</span></p>
     </div>
     <div class="defs-filter" id="defsFilter">
       <button class="def-tag-btn active" onclick="filterDefs('all', this)">الكل · All (50)</button>
@@ -901,6 +916,7 @@ function applyLang(){
 function setLang(l){
   S.lang = l;
   applyLang();
+  buildTOC();
   toast("تم تطبيق إعداد اللغة: " + l);
 }
 
@@ -1141,7 +1157,7 @@ function renderModelQuestions(modelKey){
       optsH += `
         <div class="qopt" data-opt-idx="${optIdx}" onclick="answerModelQuestion('${modelKey}', ${qNum}, ${optIdx}, ${cAns})">
           <span class="ot-ar">${esc(optAr)}</span>
-          ${optEn && optEn !== optAr ? `<span class="ot-en" style="font-size:.82rem;color:var(--ink-f);font-family:var(--fd);direction:ltr;text-align:left">${esc(optEn)}</span>` : ''}
+          ${optEn && optEn !== optAr ? `<span class="ot-en">${esc(optEn)}</span>` : ''}
         </div>
       `;
     }
@@ -1307,7 +1323,7 @@ function openExpModal(mKey, qNum){
     optsH += `
       <div style="padding:10px 14px;border-radius:8px;margin-bottom:6px;background:var(${isCor ? '--ok-bg' : '--sf2'});border:1px solid var(${isCor ? '--ok' : '--ln'});color:var(${isCor ? '--ok' : '--ink'});font-weight:${isCor ? '700' : '500'}">
         <span class="ot-ar">${isCor ? '✓ ' : '○ '} ${esc(optAr)}</span>
-        ${optEn && optEn !== optAr ? `<div class="ot-en" style="font-size:.82rem;color:var(--ink-f);font-family:var(--fd);direction:ltr;text-align:left;margin-top:2px">${esc(optEn)}</div>` : ''}
+        ${optEn && optEn !== optAr ? `<div class="ot-en" style="margin-top:4px">${esc(optEn)}</div>` : ''}
       </div>
     `;
   }
@@ -1318,7 +1334,7 @@ function openExpModal(mKey, qNum){
   modalBody.innerHTML = `
     <div style="font-size:1.1rem;font-weight:800;color:var(--ink);margin-bottom:12px;line-height:1.6">
       <span class="q-text-ar">${esc(q.text_ar || q.text || '')}</span>
-      ${q.text_en ? `<div class="q-text-en" style="font-size:.85rem;color:var(--ink-f);font-family:var(--fd);margin-top:4px;direction:ltr;text-align:left">${esc(q.text_en)}</div>` : ''}
+      ${q.text_en ? `<div class="q-text-en" style="margin-top:4px">${esc(q.text_en)}</div>` : ''}
     </div>
 
     <div style="margin-bottom:16px">${optsH}</div>
@@ -1569,9 +1585,11 @@ function buildTOC(){
   let h = "";
   if (S.activeTab === "slides") {
     DATA.lecs.forEach(l => {
-      h += `<div class="toc-lec" data-lec="${l.key}" onclick="gotoLec('${l.key}')"><span class="k">${l.key}</span><span class="ti">${esc(l.t)}</span></div>`;
+      const lTitle = (S.lang === "en-only" && l.en) ? l.en : l.t;
+      h += `<div class="toc-lec" data-lec="${l.key}" onclick="gotoLec('${l.key}')"><span class="k">${l.key}</span><span class="ti">${esc(lTitle)}</span></div>`;
       l.slides.forEach(s => {
-        h += `<div class="toc-item" data-sid="${s.id}" onclick="gotoSlide('${s.id}')"><span class="b">${s.id}</span><span class="ti">${esc(s.title)}</span></div>`;
+        const sTitle = (S.lang === "en-only" && s.en_title) ? s.en_title : s.title;
+        h += `<div class="toc-item" data-sid="${s.id}" onclick="gotoSlide('${s.id}')"><span class="b">${s.id}</span><span class="ti">${esc(sTitle)}</span></div>`;
       });
     });
   } else if (S.activeTab === "models") {
@@ -1580,7 +1598,8 @@ function buildTOC(){
       const sid = `qcard-${S.activeModel}-${idx+1}`;
       const cardEl = document.getElementById(sid);
       if (!cardEl || cardEl.style.display !== "none") {
-        h += `<div class="toc-item" data-sid="${sid}" onclick="gotoSlide('${sid}')"><span class="b">#${idx+1}</span><span class="ti">${esc(q.text_ar || q.text || '')}</span></div>`;
+        const qTitle = (S.lang === "en-only" && q.text_en) ? q.text_en : (q.text_ar || q.text || '');
+        h += `<div class="toc-item" data-sid="${sid}" onclick="gotoSlide('${sid}')"><span class="b">#${idx+1}</span><span class="ti">${esc(qTitle)}</span></div>`;
       }
     });
   } else if (S.activeTab === "summary") {
